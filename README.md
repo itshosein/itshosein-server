@@ -68,7 +68,7 @@ itshosein build with
 1. Clone the repo
 
    ```sh
-   git clone git@github.com:hosein-fatthi/itshosein.git
+   git clone https://github.com/itshosein/itshosein-server.git
    ```
 
 2. Install NPM packages
