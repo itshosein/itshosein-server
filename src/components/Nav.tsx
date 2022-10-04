@@ -1,7 +1,10 @@
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { FC } from "react";
+import { visuallyHidden } from "@mui/utils";
 import Link from "./Link";
 import CodeIcon from "@mui/icons-material/Code";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 interface NavProps {}
 
@@ -16,7 +19,7 @@ const Nav: FC<NavProps> = () => {
         component="ul"
         sx={{ listStyle: "none" }}
         display="flex"
-        justifyContent={mdUp ? "space-between" : "center"}
+        justifyContent={mdUp ? "space-around" : "center"}
         alignItems="center"
         flexWrap={mdUp ? "nowrap" : "wrap"}
         gap="2rem"
@@ -37,6 +40,7 @@ const Nav: FC<NavProps> = () => {
             </Link>
           </Box>
         </Grid>
+
         <Grid item component="li">
           <Link href="#projects">
             <Typography variant="body1">Projects</Typography>
@@ -54,17 +58,25 @@ const Nav: FC<NavProps> = () => {
         </Grid>
         <Grid item component="li">
           <Link href="https://www.linkedin.com/in/itshosein/" target="_blank">
-            <Typography variant="body1">Linkedin</Typography>
+            <LinkedInIcon />
+            <Typography variant="body1" sx={visuallyHidden}>
+              Linkedin
+            </Typography>
           </Link>
         </Grid>
-        <Grid item component="li">
+        <Grid item component="li" flexBasis="24px">
           <Link href="https://github.com/itshosein" target="_blank">
-            <Typography variant="body1">Github</Typography>
+            <GitHubIcon />
+            <Typography variant="body1" sx={visuallyHidden}>
+              Github
+            </Typography>
           </Link>
         </Grid>
         <Grid item component="li">
           <Link href="#">
-            <Typography variant="body1">Resume</Typography>
+            <Typography variant="body1" /* sx={visuallyHidden} */>
+              Resume
+            </Typography>
           </Link>
         </Grid>
       </Grid>
