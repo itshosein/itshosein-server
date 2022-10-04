@@ -1,4 +1,11 @@
-import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { FC } from "react";
 import { visuallyHidden } from "@mui/utils";
 import Link from "./Link";
@@ -74,10 +81,8 @@ const Nav: FC<NavProps> = () => {
           </Link>
         </Grid>
         <Grid item component="li">
-          <Link href="#">
-            <Typography variant="body1" /* sx={visuallyHidden} */>
-              Resume
-            </Typography>
+          <Link href="/" sx={{ "&:hover": { textDecoration: "none" } }}>
+            <Button variant="contained">Resume</Button>
           </Link>
         </Grid>
       </Grid>

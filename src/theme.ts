@@ -17,7 +17,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textDecoration: "none",
-          color: "#f1e1f5",
+          color: "white",
           "&:hover": {
             textDecoration: "underline",
           },
