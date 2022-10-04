@@ -11,8 +11,7 @@ const IntroSection: FC = () => {
       width="100%"
       flexDirection="column"
       justifyContent="flex-start"
-      sx={{ padding: { xs: "1rem", md: "2rem 0" } }}
-      pb="10rem"
+      sx={{ padding: { xs: "1rem 0 10rem", md: "2rem 0 10rem" } }}
       margin="0 auto"
     >
       <Typography variant="body1" padding="1rem 0" lineHeight="2.5">
@@ -22,6 +21,7 @@ const IntroSection: FC = () => {
           component="span"
           variant="h4"
           sx={{ fontSize: { md: "4rem" } }}
+          color="secondary.main"
         >
           Hosein Fathi.
         </Typography>
