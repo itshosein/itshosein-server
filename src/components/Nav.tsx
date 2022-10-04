@@ -18,6 +18,7 @@ const Nav: FC<NavProps> = () => {
         container
         component="ul"
         sx={{ listStyle: "none" }}
+        padding="0"
         display="flex"
         justifyContent={mdUp ? "space-around" : "center"}
         alignItems="center"
