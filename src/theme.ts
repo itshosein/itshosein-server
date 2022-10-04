@@ -1,10 +1,36 @@
 import { createTheme } from "@mui/material/styles";
-import { red } from "@mui/material/colors";
 
-// Create a theme instance.
 const theme = createTheme({
   palette: {
     mode: "dark",
+    background: {
+      default: "#001129",
+      paper: "#001129",
+    },
+    common: {
+      white: "#f1e1f5",
+      black: "#001129",
+    },
+  },
+  components: {
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          textDecoration: "none",
+          color: "#f1e1f5",
+          "&:hover": {
+            textDecoration: "underline",
+          },
+        },
+      },
+    },
+    MuiCssBaseline: {
+      styleOverrides: `
+        h1,h2,h3,h4,h5,h6 {
+          margin: 0;
+        }
+      `,
+    },
   },
 });
 
