@@ -28,7 +28,7 @@ const theme = createTheme({
       styleOverrides: `
         * {
           margin: 0;
-          margin: 0;
+          padding: 0;
         }
       `,
     },

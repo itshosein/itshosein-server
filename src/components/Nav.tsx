@@ -20,16 +20,18 @@ const Nav: FC<NavProps> = () => {
   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <Box component="nav" width="100%" fontSize="80%" padding="2rem" mt="2rem">
+    <Box component="nav" width="100%" fontSize="80%" padding="2rem 0" mt="2rem">
       <Grid
         container
         component="ul"
-        sx={{ listStyle: "none" }}
+        sx={{
+          listStyle: "none",
+          justifyContent: { xs: "center", md: "space-around" },
+          flexWrap: { xs: "wrap", md: "nowrap" },
+        }}
         padding="0"
         display="flex"
-        justifyContent={mdUp ? "space-around" : "center"}
         alignItems="center"
-        flexWrap={mdUp ? "nowrap" : "wrap"}
         gap="2rem"
       >
         <Grid component="li" item xs={12} md={6}>
