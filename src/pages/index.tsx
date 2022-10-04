@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
-import { Grid, Box, Container, Typography } from "@mui/material";
-import Nav from "../components/Nav";
-import IntroSection from "../components/IntroSection";
+import { Box, Container } from "@mui/material";
+import Nav from "@components/nav/Nav";
+import IntroSection from "@components/intro-section/IntroSection";
+import GradientDivider from "@components/gradient-divider/GradientDivider";
 
 const Home: NextPage = () => {
   return (
@@ -9,6 +10,8 @@ const Home: NextPage = () => {
       <Box component="main">
         <Nav />
         <IntroSection />
+
+        <GradientDivider />
       </Box>
     </Container>
   );

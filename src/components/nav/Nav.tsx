@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { FC } from "react";
 import { visuallyHidden } from "@mui/utils";
-import Link from "./Link";
+import LinkWrapper from "../link-wrapper/LinkWrapper";
 import CodeIcon from "@mui/icons-material/Code";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -36,7 +36,7 @@ const Nav: FC<NavProps> = () => {
       >
         <Grid component="li" item xs={12} md={6}>
           <Box component="h1" textAlign={mdUp ? "start" : "center"}>
-            <Link
+            <LinkWrapper
               href="/"
               width="100%"
               display="flex"
@@ -47,45 +47,48 @@ const Nav: FC<NavProps> = () => {
               <Typography variant="h5" component="span" ml="0.5rem">
                 Hosein Fathi
               </Typography>
-            </Link>
+            </LinkWrapper>
           </Box>
         </Grid>
 
         <Grid item component="li">
-          <Link href="#projects">
+          <LinkWrapper href="#projects">
             <Typography variant="body1">Projects</Typography>
-          </Link>
+          </LinkWrapper>
         </Grid>
         <Grid item component="li">
-          <Link href="#about-me">
+          <LinkWrapper href="#about-me">
             <Typography variant="body1">About</Typography>
-          </Link>
+          </LinkWrapper>
         </Grid>
         <Grid item component="li">
-          <Link href="#contact">
+          <LinkWrapper href="#contact">
             <Typography variant="body1">Contact</Typography>
-          </Link>
+          </LinkWrapper>
         </Grid>
         <Grid item component="li">
-          <Link href="https://www.linkedin.com/in/itshosein/" target="_blank">
+          <LinkWrapper
+            href="https://www.linkedin.com/in/itshosein/"
+            target="_blank"
+          >
             <LinkedInIcon />
             <Typography variant="body1" sx={visuallyHidden}>
               Linkedin
             </Typography>
-          </Link>
+          </LinkWrapper>
         </Grid>
         <Grid item component="li" flexBasis="24px">
-          <Link href="https://github.com/itshosein" target="_blank">
+          <LinkWrapper href="https://github.com/itshosein" target="_blank">
             <GitHubIcon />
             <Typography variant="body1" sx={visuallyHidden}>
               Github
             </Typography>
-          </Link>
+          </LinkWrapper>
         </Grid>
         <Grid item component="li">
-          <Link href="/" sx={{ "&:hover": { textDecoration: "none" } }}>
+          <LinkWrapper href="/" sx={{ "&:hover": { textDecoration: "none" } }}>
             <Button variant="contained">Resume</Button>
-          </Link>
+          </LinkWrapper>
         </Grid>
       </Grid>
     </Box>

@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Box, Grid, Typography } from "@mui/material";
-import Link from "./Link";
-import styled from "@emotion/styled";
+import LinkWrapper from "@components/link-wrapper/LinkWrapper";
 
 const IntroSection: FC = () => {
   return (
@@ -36,13 +35,13 @@ const IntroSection: FC = () => {
 
       <Typography variant="h6" fontWeight={400} component="p" margin="1rem 0">
         Currently, I'm working at
-        <Link
+        <LinkWrapper
           href="https://www.linkedin.com/company/setareaval/mycompany/verification/"
           target="_blank"
           ml="0.5rem"
         >
           SetareAval Corp.
-        </Link>
+        </LinkWrapper>
       </Typography>
     </Grid>
   );
