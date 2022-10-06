@@ -4,6 +4,7 @@ import Nav from "@components/nav";
 import IntroSection from "@components/intro-section";
 import GradientDivider from "@components/gradient-divider";
 import ContactMeSection from "@components/contact-me-section";
+import SkillsSection from "@components/skills-section";
 
 const Home: NextPage = () => {
   return (
@@ -14,7 +15,9 @@ const Home: NextPage = () => {
 
         <GradientDivider />
 
-        <ContactMeSection />
+        {/* <ContactMeSection /> */}
+
+        <SkillsSection />
       </Box>
     </Container>
   );
