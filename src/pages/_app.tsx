@@ -3,6 +3,7 @@ import { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "../theme";
+import Nav from "@components/nav";
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -15,6 +16,8 @@ export default function MyApp(props: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <Nav />
+
         <Component {...pageProps} />
       </ThemeProvider>
     </>

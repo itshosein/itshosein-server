@@ -8,9 +8,8 @@ import SkillsSection from "@components/skills-section";
 
 const Home: NextPage = () => {
   return (
-    <Container maxWidth="lg">
+    <Container>
       <Box component="main">
-        <Nav />
         <IntroSection />
 
         <GradientDivider />
