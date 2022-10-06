@@ -1,3 +1,4 @@
+import { FC, useEffect, useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -6,7 +7,6 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { FC } from "react";
 import { visuallyHidden } from "@mui/utils";
 import LinkWrapper from "../link-wrapper";
 import CodeIcon from "@mui/icons-material/Code";
@@ -18,24 +18,58 @@ interface NavProps {}
 const Nav: FC<NavProps> = () => {
   const theme = useTheme();
   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
+  const [isPageScrolled, setIsPageScrolled] = useState(Boolean(window.scrollY));
+
+  const handleNavScroll = () => {
+    setIsPageScrolled(Boolean(window.scrollY));
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleNavScroll);
+
+    return () => window.removeEventListener("scroll", handleNavScroll);
+  }, []);
 
   return (
-    <Box component="nav" width="100%" fontSize="80%" padding="2rem 0" mt="2rem">
+    <Box
+      component="nav"
+      sx={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        // maxWidth: `calc(${theme.breakpoints.values["lg"]}px - 38px)`,
+        width: "100%",
+        fontSize: "80%",
+        padding: "2rem",
+        display: "flex",
+        justifyContent: "center",
+        backgroundColor: (theme) => theme.palette.background.default,
+        zIndex: (theme) => theme.zIndex.appBar,
+        transition: "all 0.3s",
+        borderBottom: (theme) =>
+          isPageScrolled
+            ? `1px solid ${theme.palette.grey["100"]}`
+            : "1px solid transparent",
+      }}
+    >
       <Grid
         container
         component="ul"
         sx={{
+          maxWidth: `calc(${theme.breakpoints.values["lg"]}px - 38px)`,
+          width: "100%",
           listStyle: "none",
-          justifyContent: { xs: "center", md: "space-around" },
+          justifyContent: { xs: "center", md: "space-between" },
           flexWrap: { xs: "wrap", md: "nowrap" },
+          padding: "0",
+          display: "flex",
+          alignItems: "center",
+          gap: "2rem",
         }}
-        padding="0"
-        display="flex"
-        alignItems="center"
-        gap="2rem"
       >
         <Grid component="li" item xs={12} md={6}>
-          <Box component="h1" textAlign={mdUp ? "start" : "center"}>
+          <Box component="h2" textAlign={mdUp ? "start" : "center"}>
             <LinkWrapper
               href="/"
               width="100%"
@@ -44,7 +78,12 @@ const Nav: FC<NavProps> = () => {
               justifyContent={mdUp ? "start" : "center"}
             >
               <CodeIcon />
-              <Typography variant="h5" component="span" ml="0.5rem">
+              <Typography
+                variant="h5"
+                fontWeight={500}
+                component="span"
+                ml="0.5rem"
+              >
                 Hosein Fathi
               </Typography>
             </LinkWrapper>
@@ -53,17 +92,23 @@ const Nav: FC<NavProps> = () => {
 
         <Grid item component="li">
           <LinkWrapper href="#projects">
-            <Typography variant="body1">Projects</Typography>
+            <Typography variant="h6" component="h2">
+              Projects
+            </Typography>
           </LinkWrapper>
         </Grid>
         <Grid item component="li">
           <LinkWrapper href="#about-me">
-            <Typography variant="body1">About</Typography>
+            <Typography variant="h6" component="h2">
+              About
+            </Typography>
           </LinkWrapper>
         </Grid>
         <Grid item component="li">
           <LinkWrapper href="#contact">
-            <Typography variant="body1">Contact</Typography>
+            <Typography variant="h6" component="h2">
+              Contact
+            </Typography>
           </LinkWrapper>
         </Grid>
         <Grid item component="li">
@@ -72,7 +117,7 @@ const Nav: FC<NavProps> = () => {
             target="_blank"
           >
             <LinkedInIcon />
-            <Typography variant="body1" sx={visuallyHidden}>
+            <Typography variant="h6" component="h2" sx={visuallyHidden}>
               Linkedin
             </Typography>
           </LinkWrapper>
@@ -80,7 +125,7 @@ const Nav: FC<NavProps> = () => {
         <Grid item component="li" flexBasis="24px">
           <LinkWrapper href="https://github.com/itshosein" target="_blank">
             <GitHubIcon />
-            <Typography variant="body1" sx={visuallyHidden}>
+            <Typography variant="h6" component="h2" sx={visuallyHidden}>
               Github
             </Typography>
           </LinkWrapper>
