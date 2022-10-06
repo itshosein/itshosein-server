@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import LinkWrapper from "@components/link-wrapper/LinkWrapper";
 
 const IntroSection: FC = () => {
@@ -20,7 +20,7 @@ const IntroSection: FC = () => {
           component="span"
           variant="h4"
           sx={{ fontSize: { md: "4rem" } }}
-          color="secondary.main"
+          color="secondary.dark"
         >
           Hosein Fathi.
         </Typography>
