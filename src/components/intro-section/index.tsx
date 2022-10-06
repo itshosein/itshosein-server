@@ -7,11 +7,16 @@ const IntroSection: FC = () => {
     <Grid
       container
       component="section"
-      width="100%"
-      flexDirection="column"
-      justifyContent="flex-start"
-      sx={{ padding: { xs: "1rem 0 10rem", md: "2rem 0 10rem" } }}
-      margin="0 auto"
+      sx={{
+        width: "100%",
+        padding: {
+          xs: "12rem 0 10rem",
+          md: "10rem 0 10rem",
+        },
+        margin: "0 auto",
+        justifyContent: "flex-start",
+        flexDirection: "column",
+      }}
     >
       <Typography variant="body1" padding="1rem 0" lineHeight="2.5">
         Hi, my name is{" "}
