@@ -1,4 +1,13 @@
 import { Box, Grid, LinearProgress, Typography } from "@mui/material";
+import styled from "@emotion/styled";
+
+const GridSkillRow = styled(Box)`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  align-items: center;
+  gap: 4rem;
+`;
 
 function SkillsSection() {
   const skills = [
@@ -30,15 +39,6 @@ function SkillsSection() {
       </Typography>
 
       <Box
-        component="div"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <Box minWidth="20%" />
-      </Box>
-      <Box
         sx={{
           width: "100%",
           display: "flex",
@@ -46,19 +46,24 @@ function SkillsSection() {
           gap: "2rem",
         }}
       >
+        <GridSkillRow component="div">
+          <Box
+            sx={{
+              display: "inline-block",
+              gridColumn: 1 / 2,
+            }}
+          ></Box>
+          <Box sx={{ width: "80%", gridColumn: 2 / 3 }}></Box>
+        </GridSkillRow>
         {Array.isArray(skills) &&
           skills.map((skill) => {
             return (
-              <Box
-                component="div"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
+              <GridSkillRow component="div">
                 <Typography
                   component="h3"
-                  sx={{ width: "20%", display: "inline-block", mr: "4rem" }}
+                  sx={{
+                    display: "inline-block",
+                  }}
                   color="text.primary"
                   variant="h5"
                 >
@@ -73,97 +78,7 @@ function SkillsSection() {
                     variant="determinate"
                   />
                 </Box>
-              </Box>
-            );
-          })}
-        {Array.isArray(skills) &&
-          skills.map((skill) => {
-            return (
-              <Box
-                component="div"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Typography
-                  component="h3"
-                  sx={{ width: "20%", display: "inline-block", mr: "4rem" }}
-                  color="text.primary"
-                  variant="h5"
-                >
-                  {skill.name}
-                </Typography>
-                <Box sx={{ width: "80%" }}>
-                  <LinearProgress
-                    value={skill.percent}
-                    sx={{
-                      height: "10px",
-                    }}
-                    variant="determinate"
-                  />
-                </Box>
-              </Box>
-            );
-          })}
-        {Array.isArray(skills) &&
-          skills.map((skill) => {
-            return (
-              <Box
-                component="div"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Typography
-                  component="h3"
-                  sx={{ width: "20%", display: "inline-block", mr: "4rem" }}
-                  color="text.primary"
-                  variant="h5"
-                >
-                  {skill.name}
-                </Typography>
-                <Box sx={{ width: "80%" }}>
-                  <LinearProgress
-                    value={skill.percent}
-                    sx={{
-                      height: "10px",
-                    }}
-                    variant="determinate"
-                  />
-                </Box>
-              </Box>
-            );
-          })}
-        {Array.isArray(skills) &&
-          skills.map((skill) => {
-            return (
-              <Box
-                component="div"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Typography
-                  component="h3"
-                  sx={{ width: "20%", display: "inline-block", mr: "4rem" }}
-                  color="text.primary"
-                  variant="h5"
-                >
-                  {skill.name}
-                </Typography>
-                <Box sx={{ width: "80%" }}>
-                  <LinearProgress
-                    value={skill.percent}
-                    sx={{
-                      height: "10px",
-                    }}
-                    variant="determinate"
-                  />
-                </Box>
-              </Box>
+              </GridSkillRow>
             );
           })}
       </Box>
