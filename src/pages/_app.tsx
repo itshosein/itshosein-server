@@ -5,6 +5,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import theme from "../theme";
 import Nav from "@components/nav";
 
+// const Nav = dynamic(() => import("@components/nav"), { ssr: false });
+
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   console.log("theme", theme);

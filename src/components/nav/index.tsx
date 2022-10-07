@@ -12,23 +12,21 @@ import LinkWrapper from "../link-wrapper";
 import CodeIcon from "@mui/icons-material/Code";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import dynamic from "next/dynamic";
+const WindowScrollY = dynamic(() => import("./component/window-scroll-y"), {
+  ssr: false,
+});
 
 interface NavProps {}
 
 const Nav: FC<NavProps> = () => {
   const theme = useTheme();
   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
-  const [isPageScrolled, setIsPageScrolled] = useState(Boolean(window.scrollY));
+  const [pageScroll, setPageScroll] = useState(0);
 
-  const handleNavScroll = () => {
-    setIsPageScrolled(Boolean(window.scrollY));
+  const handleWindowScroll = (scroll: number) => {
+    setPageScroll(scroll);
   };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleNavScroll);
-
-    return () => window.removeEventListener("scroll", handleNavScroll);
-  }, []);
 
   return (
     <Box
@@ -48,11 +46,12 @@ const Nav: FC<NavProps> = () => {
         zIndex: (theme) => theme.zIndex.appBar,
         transition: "all 0.3s",
         borderBottom: (theme) =>
-          isPageScrolled
+          Boolean(pageScroll)
             ? `1px solid ${theme.palette.grey["100"]}`
             : "1px solid transparent",
       }}
     >
+      <WindowScrollY scrollCB={handleWindowScroll} />
       <Grid
         container
         component="ul"
