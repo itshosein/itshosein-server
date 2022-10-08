@@ -23,7 +23,7 @@ const skills: ISkills[] = [
     statusLabel: "Well Informed",
   },
   {
-    name: "Redux",
+    name: "Redux.js",
     statePercent: 80,
     statusLabel: "Well Informed",
   },
@@ -31,6 +31,11 @@ const skills: ISkills[] = [
     name: "Next.js",
     statePercent: 80,
     statusLabel: "Well Informed",
+  },
+  {
+    name: "express.js",
+    statePercent: 60,
+    statusLabel: "Need Improvement",
   },
   {
     name: "CSS",
