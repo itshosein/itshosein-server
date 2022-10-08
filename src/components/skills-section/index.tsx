@@ -50,7 +50,6 @@ function SkillsSection() {
       component="section"
       sx={{
         width: "100%",
-        mt: "4rem",
         padding: "2rem 0",
       }}
     >
@@ -63,7 +62,7 @@ function SkillsSection() {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          gap: "1rem",
+          gap: "4rem",
         }}
       >
         {Array.isArray(skills) &&

@@ -17,6 +17,7 @@ const Home: NextPage = () => {
         {/* <ContactMeSection /> */}
 
         <SkillsSection />
+        <GradientDivider />
       </Box>
     </Container>
   );
