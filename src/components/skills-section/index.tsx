@@ -33,7 +33,7 @@ const skills: ISkills[] = [
     statusLabel: "Well Informed",
   },
   {
-    name: "express.js",
+    name: "Express.js",
     statePercent: 60,
     statusLabel: "Need Improvement",
   },
