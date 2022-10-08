@@ -11,7 +11,6 @@ function GradientDivider() {
         position: "absolute",
         left: "0",
         right: "0",
-        margin: "4rem 0",
       }}
     />
   );

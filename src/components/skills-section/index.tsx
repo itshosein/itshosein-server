@@ -50,6 +50,7 @@ function SkillsSection() {
       component="section"
       sx={{
         width: "100%",
+        margin: "4rem 0",
         padding: "2rem 0",
       }}
     >

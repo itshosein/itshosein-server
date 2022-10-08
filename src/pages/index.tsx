@@ -5,6 +5,7 @@ import IntroSection from "@components/intro-section";
 import GradientDivider from "@components/gradient-divider";
 import ContactMeSection from "@components/contact-me-section";
 import SkillsSection from "@components/skills-section";
+import AboutMe from "@components/about-me";
 
 const Home: NextPage = () => {
   return (
@@ -15,6 +16,9 @@ const Home: NextPage = () => {
         <GradientDivider />
 
         {/* <ContactMeSection /> */}
+        <AboutMe />
+
+        <GradientDivider />
 
         <SkillsSection />
         <GradientDivider />
