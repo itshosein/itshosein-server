@@ -1,13 +1,6 @@
 import { Box, Grid, LinearProgress, Typography } from "@mui/material";
 import styled from "@emotion/styled";
-
-const GridSkillRow = styled(Box)`
-  width: 100%;
-  display: grid;
-  grid-template-columns: 20% 80%;
-  align-items: center;
-  gap: 4rem;
-`;
+import { useId } from "react";
 
 function SkillsSection() {
   const skills = [
@@ -24,6 +17,10 @@ function SkillsSection() {
       percent: 80,
     },
   ];
+
+  const id = useId();
+
+  console.log(id);
 
   return (
     <Box
@@ -46,19 +43,20 @@ function SkillsSection() {
           gap: "2rem",
         }}
       >
-        <GridSkillRow component="div">
-          <Box
-            sx={{
-              display: "inline-block",
-              gridColumn: 1 / 2,
-            }}
-          ></Box>
-          <Box sx={{ width: "80%", gridColumn: 2 / 3 }}></Box>
-        </GridSkillRow>
         {Array.isArray(skills) &&
           skills.map((skill) => {
             return (
-              <GridSkillRow component="div">
+              <Box
+                component="div"
+                key={id}
+                sx={{
+                  width: "100%",
+                  display: "grid",
+                  gridTemplateColumns: "20% 80%",
+                  alignItems: "center",
+                  gap: "4rem",
+                }}
+              >
                 <Typography
                   component="h3"
                   sx={{
@@ -78,7 +76,7 @@ function SkillsSection() {
                     variant="determinate"
                   />
                 </Box>
-              </GridSkillRow>
+              </Box>
             );
           })}
       </Box>
