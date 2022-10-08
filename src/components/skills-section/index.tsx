@@ -1,27 +1,45 @@
-import { Box, Grid, LinearProgress, Typography } from "@mui/material";
-import styled from "@emotion/styled";
-import { useId } from "react";
+import { Box, Typography } from "@mui/material";
+import SkillRow from "./components/skill-row";
+
+export interface ISkills {
+  name: string;
+  statePercent: number;
+  statusLabel: string;
+}
+const skills: ISkills[] = [
+  {
+    name: "Javascript",
+    statePercent: 80,
+    statusLabel: "Well Informed",
+  },
+  {
+    name: "Typescript",
+    statePercent: 70,
+    statusLabel: "Well Informed",
+  },
+  {
+    name: "React.js",
+    statePercent: 80,
+    statusLabel: "Well Informed",
+  },
+  {
+    name: "Redux",
+    statePercent: 80,
+    statusLabel: "Well Informed",
+  },
+  {
+    name: "Next.js",
+    statePercent: 80,
+    statusLabel: "Well Informed",
+  },
+  {
+    name: "CSS",
+    statePercent: 80,
+    statusLabel: "Well Informed",
+  },
+];
 
 function SkillsSection() {
-  const skills = [
-    {
-      name: "Javascript",
-      percent: 80,
-    },
-    {
-      name: "Typescript",
-      percent: 70,
-    },
-    {
-      name: "CSS",
-      percent: 80,
-    },
-  ];
-
-  const id = useId();
-
-  console.log(id);
-
   return (
     <Box
       component="section"
@@ -40,43 +58,17 @@ function SkillsSection() {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          gap: "2rem",
+          gap: "1rem",
         }}
       >
         {Array.isArray(skills) &&
-          skills.map((skill) => {
+          skills.map((skill, index, arr) => {
             return (
-              <Box
-                component="div"
-                key={id}
-                sx={{
-                  width: "100%",
-                  display: "grid",
-                  gridTemplateColumns: "20% 80%",
-                  alignItems: "center",
-                  gap: "4rem",
-                }}
-              >
-                <Typography
-                  component="h3"
-                  sx={{
-                    display: "inline-block",
-                  }}
-                  color="text.primary"
-                  variant="h5"
-                >
-                  {skill.name}
-                </Typography>
-                <Box sx={{ width: "80%" }}>
-                  <LinearProgress
-                    value={skill.percent}
-                    sx={{
-                      height: "10px",
-                    }}
-                    variant="determinate"
-                  />
-                </Box>
-              </Box>
+              <SkillRow
+                skill={skill}
+                key={index}
+                isBorderAllowed={index + 1 != arr.length}
+              />
             );
           })}
       </Box>
