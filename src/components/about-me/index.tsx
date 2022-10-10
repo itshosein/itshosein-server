@@ -20,7 +20,7 @@ function AboutMe() {
         fundamentals of programming and started my front-end career with lots of
         courses online from Html to CSS and React.js.
         <br /> I started to work in a real company in February 2020 as a React
-        developer in Setare Aval that is an Iranian financial app.
+        developer in Setare Aval which is an Iranian financial app.
       </Typography>
     </Box>
   );
