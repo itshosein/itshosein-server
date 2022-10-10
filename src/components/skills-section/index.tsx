@@ -5,42 +5,50 @@ export interface ISkills {
   name: string;
   statePercent: number;
   statusLabel: string;
+  color: string;
 }
 const skills: ISkills[] = [
   {
     name: "Javascript",
     statePercent: 80,
     statusLabel: "Well Informed",
+    color: "#3178c6",
   },
   {
     name: "Typescript",
     statePercent: 70,
     statusLabel: "Well Informed",
+    color: "#fcdc00",
   },
   {
     name: "React.js",
     statePercent: 80,
     statusLabel: "Well Informed",
+    color: "#61dafb",
   },
   {
     name: "Redux.js",
     statePercent: 80,
     statusLabel: "Well Informed",
+    color: "#593d88",
   },
   {
     name: "Next.js",
     statePercent: 80,
     statusLabel: "Well Informed",
+    color: "#d3d3d3",
   },
   {
     name: "Express.js",
     statePercent: 60,
     statusLabel: "Need Improvement",
+    color: "#919191",
   },
   {
     name: "CSS",
     statePercent: 80,
     statusLabel: "Well Informed",
+    color: "#2449d8",
   },
 ];
 

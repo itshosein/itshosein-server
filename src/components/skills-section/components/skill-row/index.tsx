@@ -36,6 +36,7 @@ const SkillRow: FC<SkillRowProps> = ({ skill, isBorderAllowed }) => {
         sx={{
           gridColumn: { xs: "1/3", md: "1/2" },
           textAlign: { xs: "center", md: "start" },
+          color: skill.color,
         }}
       >
         {skill.name}
