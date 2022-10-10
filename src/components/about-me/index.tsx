@@ -13,7 +13,7 @@ function AboutMe() {
       <Typography variant="h3" component="h2" textAlign="center" mb="4rem">
         Who am I ?
       </Typography>
-      <Typography variant="h6" component="h3">
+      <Typography variant="h6" component="h3" lineHeight={3}>
         I am 25 years old software engineer that lives in Iran. I started my
         journey as a programmer since four years ago at university where I
         encountered c++ and get in love with coding, since then I learned the
