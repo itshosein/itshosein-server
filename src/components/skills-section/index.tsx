@@ -11,31 +11,31 @@ const skills: ISkills[] = [
   {
     name: "Javascript",
     statePercent: 80,
-    statusLabel: "Well Informed",
+    statusLabel: "Proficient",
     color: "#3178c6",
   },
   {
     name: "Typescript",
     statePercent: 70,
-    statusLabel: "Well Informed",
+    statusLabel: "Proficient",
     color: "#fcdc00",
   },
   {
     name: "React.js",
     statePercent: 80,
-    statusLabel: "Well Informed",
+    statusLabel: "Proficient",
     color: "#61dafb",
   },
   {
     name: "Redux.js",
     statePercent: 80,
-    statusLabel: "Well Informed",
+    statusLabel: "Proficient",
     color: "#593d88",
   },
   {
     name: "Next.js",
     statePercent: 80,
-    statusLabel: "Well Informed",
+    statusLabel: "Proficient",
     color: "#d3d3d3",
   },
   {
@@ -47,7 +47,7 @@ const skills: ISkills[] = [
   {
     name: "CSS",
     statePercent: 80,
-    statusLabel: "Well Informed",
+    statusLabel: "Proficient",
     color: "#2449d8",
   },
 ];
