@@ -12,13 +12,13 @@ const skills: ISkills[] = [
     name: "Javascript",
     statePercent: 80,
     statusLabel: "Proficient",
-    color: "#3178c6",
+    color: "#fcdc00",
   },
   {
     name: "Typescript",
     statePercent: 70,
     statusLabel: "Proficient",
-    color: "#fcdc00",
+    color: "#3178c6",
   },
   {
     name: "React.js",
