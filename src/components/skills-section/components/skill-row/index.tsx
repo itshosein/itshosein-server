@@ -14,8 +14,6 @@ const SkillRow: FC<SkillRowProps> = ({ skill, isBorderAllowed }) => {
     threshold: 0.5,
   });
 
-  console.log(skill.name, inView);
-
   return (
     <Box
       ref={ref}

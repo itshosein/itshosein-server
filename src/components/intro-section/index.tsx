@@ -1,10 +1,16 @@
 import { FC } from "react";
 import { Grid, Typography } from "@mui/material";
 import LinkWrapper from "@components/link-wrapper";
+import { useInView } from "react-intersection-observer";
 
 const IntroSection: FC = () => {
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
   return (
     <Grid
+      ref={ref}
       container
       component="section"
       sx={{
@@ -16,6 +22,9 @@ const IntroSection: FC = () => {
         margin: "0 auto",
         justifyContent: "flex-start",
         flexDirection: "column",
+        transition: "all 1s",
+        transform: `translateX(${inView ? "0" : "-100px"})`,
+        opacity: inView ? "1" : "0",
       }}
     >
       <Typography variant="body1" padding="1rem 0" lineHeight="2.5">
