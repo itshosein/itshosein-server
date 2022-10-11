@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
 import { Box, Container } from "@mui/material";
 import Nav from "@components/nav";
-import IntroSection from "@components/intro-section";
-import GradientDivider from "@components/gradient-divider";
-import ContactMeSection from "@components/contact-me-section";
-import SkillsSection from "@components/skills-section";
-import AboutMe from "@components/about-me";
+import IntroSection from "@components/index/intro-section";
+import GradientDivider from "@components/index/gradient-divider";
+import ContactMeSection from "@components/index/contact-me-section";
+import SkillsSection from "@components/index/skills-section";
+import AboutMe from "@components/index/about-me";
 
 const Home: NextPage = () => {
   return (

@@ -8,7 +8,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { visuallyHidden } from "@mui/utils";
-import LinkWrapper from "../link-wrapper";
+import LinkWrapper from "@components/index/link-wrapper";
 import CodeIcon from "@mui/icons-material/Code";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";

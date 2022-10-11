@@ -1,6 +1,6 @@
 import { FC, useRef, useEffect } from "react";
 import { Box, LinearProgress, Typography } from "@mui/material";
-import { ISkill } from "@components/skills-section";
+import { ISkill } from "@components/index/skills-section";
 import Image from "next/future/image";
 import { useInView } from "react-intersection-observer";
 
