@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useState } from "react";
 import {
   Box,
   Button,
@@ -130,7 +130,12 @@ const Nav: FC<NavProps> = () => {
           </LinkWrapper>
         </Grid>
         <Grid item component="li">
-          <LinkWrapper href="/" sx={{ "&:hover": { textDecoration: "none" } }}>
+          <LinkWrapper
+            sx={{ "&:hover": { textDecoration: "none" } }}
+            download="Hosein Fathi Resume"
+            href="https://localhost:3000/Hosein_fathi.pdf"
+            target="_blank"
+          >
             <Button variant="contained">Resume</Button>
           </LinkWrapper>
         </Grid>
