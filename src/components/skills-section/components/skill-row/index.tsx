@@ -1,22 +1,14 @@
 import { FC, useRef, useEffect } from "react";
 import { Box, LinearProgress, Typography } from "@mui/material";
-import { ISkills } from "@components/skills-section";
+import { ISkill } from "@components/skills-section";
 import Image from "next/future/image";
 
 interface SkillRowProps {
-  skill: ISkills;
+  skill: ISkill;
   isBorderAllowed: boolean;
 }
 
 const SkillRow: FC<SkillRowProps> = ({ skill, isBorderAllowed }) => {
-  const rowRef = useRef();
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      console.log(skill.name, rowRef);
-    });
-  }, []);
-
   return (
     <Box
       ref={rowRef}

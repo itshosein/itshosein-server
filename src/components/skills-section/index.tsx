@@ -8,14 +8,14 @@ import cssLogo from "../../../public/skills-logo/css-logo.png";
 import gitLogo from "../../../public/skills-logo/git-logo.png";
 import webpackLogo from "../../../public/skills-logo/webpack-logo.png";
 
-export interface ISkills {
+export interface ISkill {
   name: string;
   statePercent: number;
   statusLabel: string;
   color: string;
   logo?: any;
 }
-const skills: ISkills[] = [
+const skills: ISkill[] = [
   {
     name: "Javascript",
     statePercent: 80,
