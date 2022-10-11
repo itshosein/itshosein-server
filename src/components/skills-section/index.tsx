@@ -1,11 +1,19 @@
 import { Box, Typography } from "@mui/material";
 import SkillRow from "./components/skill-row";
+import tsLogo from "../../../public/skills-logo/ts-logo.svg";
+import jsLogo from "../../../public/skills-logo/js-logo.png";
+import reactLogo from "../../../public/skills-logo/react-logo.png";
+import reduxLogo from "../../../public/skills-logo/redux-logo.png";
+import cssLogo from "../../../public/skills-logo/css-logo.png";
+import gitLogo from "../../../public/skills-logo/git-logo.png";
+import webpackLogo from "../../../public/skills-logo/webpack-logo.png";
 
 export interface ISkills {
   name: string;
   statePercent: number;
   statusLabel: string;
   color: string;
+  logo?: any;
 }
 const skills: ISkills[] = [
   {
@@ -13,24 +21,28 @@ const skills: ISkills[] = [
     statePercent: 80,
     statusLabel: "Proficient",
     color: "#fcdc00",
+    logo: jsLogo,
   },
   {
     name: "Typescript",
     statePercent: 70,
     statusLabel: "Proficient",
     color: "#3178c6",
+    logo: tsLogo,
   },
   {
     name: "React.js",
     statePercent: 80,
     statusLabel: "Proficient",
     color: "#61dafb",
+    logo: reactLogo,
   },
   {
     name: "Redux.js",
     statePercent: 80,
     statusLabel: "Proficient",
     color: "#593d88",
+    logo: reduxLogo,
   },
   {
     name: "Next.js",
@@ -49,6 +61,21 @@ const skills: ISkills[] = [
     statePercent: 80,
     statusLabel: "Proficient",
     color: "#2449d8",
+    logo: cssLogo,
+  },
+  {
+    name: "Git",
+    statePercent: 70,
+    statusLabel: "Proficient",
+    color: "#e44c30",
+    logo: gitLogo,
+  },
+  {
+    name: "Webpack",
+    statePercent: 50,
+    statusLabel: "Need Improvement",
+    color: "#86caed",
+    logo: webpackLogo,
   },
 ];
 

@@ -1,6 +1,7 @@
-import { FC, useId } from "react";
-import { Box, LinearProgress, Typography, Stack } from "@mui/material";
+import { FC, useRef, useEffect } from "react";
+import { Box, LinearProgress, Typography } from "@mui/material";
 import { ISkills } from "@components/skills-section";
+import Image from "next/future/image";
 
 interface SkillRowProps {
   skill: ISkills;
@@ -8,8 +9,17 @@ interface SkillRowProps {
 }
 
 const SkillRow: FC<SkillRowProps> = ({ skill, isBorderAllowed }) => {
+  const rowRef = useRef();
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      console.log(skill.name, rowRef);
+    });
+  }, []);
+
   return (
     <Box
+      ref={rowRef}
       component="div"
       sx={{
         width: "100%",
@@ -29,18 +39,43 @@ const SkillRow: FC<SkillRowProps> = ({ skill, isBorderAllowed }) => {
         paddingBottom: isBorderAllowed ? "1rem" : "0",
       }}
     >
-      <Typography
-        component="h3"
-        color="text.primary"
-        variant="h5"
+      <Box
         sx={{
           gridColumn: { xs: "1/3", md: "1/2" },
-          textAlign: { xs: "center", md: "start" },
-          color: skill.color,
+          display: "flex",
+          justifyContent: { xs: "center", md: skill.logo ? "center" : "start" },
+          alignItems: "center",
+          padding: "1rem",
+          gap: "1rem",
+          "& img": {
+            flexBasis: "30px",
+          },
+          backgroundColor: (theme) => theme.palette.grey["900"],
+          borderRadius: "10px",
         }}
       >
-        {skill.name}
-      </Typography>
+        <Typography
+          component="h3"
+          color="text.primary"
+          variant="h5"
+          sx={{
+            textAlign: { xs: "center", md: "start" },
+            display: "inline-block",
+            color: skill.color,
+          }}
+        >
+          {skill.name}
+        </Typography>
+        {skill.logo && (
+          <Image
+            src={skill.logo}
+            alt={`${skill.name}-logo`}
+            width={30}
+            height={30}
+          />
+        )}
+      </Box>
+
       <Box
         sx={{
           width: "100%",
