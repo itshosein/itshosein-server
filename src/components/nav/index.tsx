@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useRef, useEffect } from "react";
 import {
   Box,
   Button,
@@ -22,24 +22,32 @@ interface NavProps {}
 const Nav: FC<NavProps> = () => {
   const theme = useTheme();
   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
+  const navRef = useRef<HTMLDivElement | undefined>(undefined);
   const [pageScroll, setPageScroll] = useState(0);
 
   const handleWindowScroll = (scroll: number) => {
-    setPageScroll(scroll);
+    if (
+      navRef?.current?.clientHeight &&
+      scroll - navRef.current?.offsetHeight / 2 > 0
+    ) {
+      setPageScroll(scroll);
+    } else {
+      setPageScroll(0);
+    }
   };
 
   return (
     <Box
       component="nav"
+      ref={navRef}
       sx={{
         position: "fixed",
         top: 0,
         left: 0,
         right: 0,
-        // maxWidth: `calc(${theme.breakpoints.values["lg"]}px - 38px)`,
         width: "100%",
         fontSize: "80%",
-        padding: "2rem",
+        padding: Boolean(pageScroll) ? "1rem" : "2rem",
         display: "flex",
         justifyContent: "center",
         backgroundColor: (theme) => theme.palette.background.default,
