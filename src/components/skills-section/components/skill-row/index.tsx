@@ -2,6 +2,7 @@ import { FC, useRef, useEffect } from "react";
 import { Box, LinearProgress, Typography } from "@mui/material";
 import { ISkill } from "@components/skills-section";
 import Image from "next/future/image";
+import { useInView } from "react-intersection-observer";
 
 interface SkillRowProps {
   skill: ISkill;
@@ -9,9 +10,15 @@ interface SkillRowProps {
 }
 
 const SkillRow: FC<SkillRowProps> = ({ skill, isBorderAllowed }) => {
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  });
+
+  console.log(skill.name, inView);
+
   return (
     <Box
-      ref={rowRef}
+      ref={ref}
       component="div"
       sx={{
         width: "100%",
@@ -29,6 +36,9 @@ const SkillRow: FC<SkillRowProps> = ({ skill, isBorderAllowed }) => {
         borderBottom: (theme) =>
           isBorderAllowed ? `1px solid ${theme.palette.grey["800"]}` : "none",
         paddingBottom: isBorderAllowed ? "1rem" : "0",
+        transition: "all 0.3s",
+        transform: `translateX(${inView ? "0" : "-100px"})`,
+        opacity: inView ? "1" : "0",
       }}
     >
       <Box
@@ -80,7 +90,7 @@ const SkillRow: FC<SkillRowProps> = ({ skill, isBorderAllowed }) => {
           sx={{
             height: "10px",
           }}
-          variant="determinate"
+          variant={inView ? "determinate" : "indeterminate"}
         />
       </Box>
       <Typography
