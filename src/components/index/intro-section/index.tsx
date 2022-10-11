@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Grid, Typography } from "@mui/material";
-import LinkWrapper from "@components/link-wrapper";
+import LinkWrapper from "@components/index/link-wrapper";
 import { useInView } from "react-intersection-observer";
 
 const IntroSection: FC = () => {

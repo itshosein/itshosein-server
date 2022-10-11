@@ -1,12 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import SkillRow from "./components/skill-row";
-import tsLogo from "../../../public/skills-logo/ts-logo.svg";
-import jsLogo from "../../../public/skills-logo/js-logo.png";
-import reactLogo from "../../../public/skills-logo/react-logo.png";
-import reduxLogo from "../../../public/skills-logo/redux-logo.png";
-import cssLogo from "../../../public/skills-logo/css-logo.png";
-import gitLogo from "../../../public/skills-logo/git-logo.png";
-import webpackLogo from "../../../public/skills-logo/webpack-logo.png";
+import tsLogo from "../../../../public/skills-logo/ts-logo.svg";
+import jsLogo from "../../../../public/skills-logo/js-logo.png";
+import reactLogo from "../../../../public/skills-logo/react-logo.png";
+import reduxLogo from "../../../../public/skills-logo/redux-logo.png";
+import cssLogo from "../../../../public/skills-logo/css-logo.png";
+import gitLogo from "../../../../public/skills-logo/git-logo.png";
+import webpackLogo from "../../../../public/skills-logo/webpack-logo.png";
 
 export interface ISkill {
   name: string;
