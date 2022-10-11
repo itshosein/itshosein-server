@@ -35,7 +35,7 @@ const SkillRow: FC<SkillRowProps> = ({ skill, isBorderAllowed }) => {
         gap: { xs: "1rem 2rem", md: "4rem" },
         borderBottom: (theme) =>
           isBorderAllowed ? `1px solid ${theme.palette.grey["800"]}` : "none",
-        paddingBottom: isBorderAllowed ? "1rem" : "0",
+        paddingBottom: isBorderAllowed ? "2rem" : "0",
         transition: "all 0.3s",
         transform: `translateX(${inView ? "0" : "-100px"})`,
         opacity: inView ? "1" : "0",

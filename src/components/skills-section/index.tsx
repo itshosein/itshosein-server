@@ -98,7 +98,7 @@ function SkillsSection() {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          gap: "4rem",
+          gap: "2rem",
         }}
       >
         {Array.isArray(skills) &&
