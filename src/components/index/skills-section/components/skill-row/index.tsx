@@ -1,4 +1,4 @@
-import { FC, useRef, useEffect } from "react";
+import { FC } from "react";
 import { Box, LinearProgress, Typography } from "@mui/material";
 import { ISkill } from "@components/index/skills-section";
 import Image from "next/future/image";

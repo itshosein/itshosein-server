@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import LinkWrapper from "@components/index/link-wrapper";
 import { useInView } from "react-intersection-observer";
 
@@ -9,9 +9,8 @@ const IntroSection: FC = () => {
   });
 
   return (
-    <Grid
+    <Box
       ref={ref}
-      container
       component="section"
       sx={{
         width: "100%",
@@ -57,7 +56,7 @@ const IntroSection: FC = () => {
           SetareAval Corp.
         </LinkWrapper>
       </Typography>
-    </Grid>
+    </Box>
   );
 };
 
