@@ -33,7 +33,7 @@ const IntroSection: FC = () => {
           component="span"
           variant="h4"
           sx={{ fontSize: { md: "4rem" } }}
-          color="secondary.dark"
+          color="success.dark"
         >
           Hosein Fathi.
         </Typography>
