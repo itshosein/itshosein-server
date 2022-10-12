@@ -18,6 +18,7 @@ function AboutMe() {
         transform: `translateX(${inView ? "0" : "-100px"})`,
         opacity: inView ? "1" : "0",
       }}
+      id="about-me"
     >
       <Typography variant="h3" component="h2" textAlign="center" mb="4rem">
         Who am I ?
