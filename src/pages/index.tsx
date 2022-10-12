@@ -4,24 +4,30 @@ import IntroSection from "@components/index/intro-section";
 import GradientDivider from "@components/index/gradient-divider";
 import SkillsSection from "@components/index/skills-section";
 import AboutMe from "@components/index/about-me";
+import Head from "next/head";
 
 const Home: NextPage = () => {
   return (
-    <Container>
-      <Box component="main">
-        <IntroSection />
+    <>
+      <Head>
+        <title>Hosein Fathi</title>
+      </Head>
+      <Container>
+        <Box component="main">
+          <IntroSection />
 
-        <GradientDivider />
+          <GradientDivider />
 
-        {/* <ContactMeSection /> */}
-        <AboutMe />
+          {/* <ContactMeSection /> */}
+          <AboutMe />
 
-        <GradientDivider />
+          <GradientDivider />
 
-        <SkillsSection />
-        <GradientDivider />
-      </Box>
-    </Container>
+          <SkillsSection />
+          <GradientDivider />
+        </Box>
+      </Container>
+    </>
   );
 };
 

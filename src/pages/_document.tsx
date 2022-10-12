@@ -5,6 +5,11 @@ export default () => {
   return (
     <Html lang="en">
       <Head>
+        <meta name="description" content="hosein fathi portfolio website" />
+        <meta
+          name="keywords"
+          content="hosein fathi,Hossein fathi,Hosein fathi,frontend developer,front-end developer,hosein fathi frontend developer,hosein developer,fathi developer,hosein frontend,hosein front-end"
+        />
         <meta name="theme-color" content={theme.palette.primary.main} />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link
