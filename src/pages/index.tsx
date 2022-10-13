@@ -5,6 +5,7 @@ import GradientDivider from "@components/index/gradient-divider";
 import SkillsSection from "@components/index/skills-section";
 import AboutMe from "@components/index/about-me";
 import Head from "next/head";
+import WorkExperience from "@components/index/work-experience";
 
 const Home: NextPage = () => {
   return (
@@ -23,8 +24,10 @@ const Home: NextPage = () => {
 
           <GradientDivider />
 
-          <SkillsSection />
+          <WorkExperience />
+
           <GradientDivider />
+          <SkillsSection />
         </Box>
       </Container>
     </>
