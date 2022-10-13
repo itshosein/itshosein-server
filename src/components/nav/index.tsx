@@ -126,7 +126,11 @@ const Nav: FC<NavProps> = () => {
               </Typography>
             </LinkWrapper>
           </Grid>
-          <Grid item component="li">
+          <Grid
+            item
+            component="li"
+            sx={{ justifySelf: "center", alignSelf: "center" }}
+          >
             <LinkWrapper
               href="https://www.linkedin.com/in/itshosein/"
               target="_blank"
@@ -137,7 +141,15 @@ const Nav: FC<NavProps> = () => {
               </Typography>
             </LinkWrapper>
           </Grid>
-          <Grid item component="li" flexBasis="24px">
+          <Grid
+            item
+            component="li"
+            sx={{
+              justifySelf: "center",
+              alignSelf: "center",
+              flexBasis: "24px",
+            }}
+          >
             <LinkWrapper href="https://github.com/itshosein" target="_blank">
               <GitHubIcon />
               <Typography variant="h6" component="h2" sx={visuallyHidden}>
@@ -149,7 +161,7 @@ const Nav: FC<NavProps> = () => {
             <LinkWrapper
               sx={{ "&:hover": { textDecoration: "none" } }}
               download="Hosein Fathi Resume"
-              href="https://localhost:3000/Hosein_fathi.pdf"
+              href="https://drive.google.com/file/d/1cjwEQjjpQ2PQoWPkGiTbRWT2wstEnnkm/view?usp=sharing"
               target="_blank"
             >
               <Button variant="contained">Resume</Button>
