@@ -28,7 +28,7 @@ const Nav: FC<NavProps> = () => {
   const handleWindowScroll = (scroll: number) => {
     if (
       navRef?.current?.clientHeight &&
-      scroll - navRef.current?.offsetHeight / 2 > 0
+      scroll - navRef.current?.offsetHeight > -5
     ) {
       setPageScroll(scroll);
     } else {
@@ -41,10 +41,7 @@ const Nav: FC<NavProps> = () => {
       component="nav"
       ref={navRef}
       sx={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
+        position: Boolean(pageScroll) ? "fixed" : "static",
         width: "100%",
         fontSize: "80%",
         padding: Boolean(pageScroll) ? "1rem" : "2rem",
@@ -96,6 +93,7 @@ const Nav: FC<NavProps> = () => {
           </Box>
         </Grid>
         <Grid
+          item
           container
           xs={12}
           md={6}

@@ -14,10 +14,7 @@ const IntroSection: FC = () => {
       component="section"
       sx={{
         width: "100%",
-        padding: {
-          xs: "12rem 0 10rem",
-          md: "10rem 0 10rem",
-        },
+        padding: "2rem 0 10rem",
         margin: "0 auto",
         justifyContent: "flex-start",
         flexDirection: "column",
