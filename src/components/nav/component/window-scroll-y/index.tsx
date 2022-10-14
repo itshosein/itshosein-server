@@ -6,6 +6,9 @@ interface IWindowScrollYProps {
 
 const WindowScrollY: FC<IWindowScrollYProps> = ({ scrollCB }) => {
   useEffect(() => {
+    if (window.scrollY > 0) {
+      scrollCB(window.scrollY);
+    }
     window.addEventListener("scroll", () => scrollCB(window.scrollY));
 
     return () =>
