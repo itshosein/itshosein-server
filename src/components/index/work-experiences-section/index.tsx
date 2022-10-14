@@ -43,6 +43,7 @@ function WorkExperience() {
   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <Box
+      id="experience"
       ref={ref}
       component="section"
       sx={{

@@ -106,6 +106,13 @@ const Nav: FC<NavProps> = () => {
           }}
         >
           <Grid item component="li">
+            <LinkWrapper href="#experience">
+              <Typography variant="h6" component="h2">
+                Experience
+              </Typography>
+            </LinkWrapper>
+          </Grid>
+          <Grid item component="li">
             <LinkWrapper href="#projects">
               <Typography variant="h6" component="h2">
                 Projects
