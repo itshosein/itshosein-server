@@ -4,6 +4,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "../theme";
 import Nav from "@components/nav";
+import Footer from "@components/footer";
 
 // const Nav = dynamic(() => import("@components/nav"), { ssr: false });
 
@@ -21,6 +22,7 @@ export default function MyApp(props: AppProps) {
         <Nav />
 
         <Component {...pageProps} />
+        <Footer />
       </ThemeProvider>
     </>
   );
