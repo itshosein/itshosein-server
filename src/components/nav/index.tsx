@@ -16,6 +16,7 @@ const WindowScrollY = dynamic(() => import("./component/window-scroll-y"), {
   ssr: false,
 });
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface NavProps {}
 
@@ -87,23 +88,39 @@ const Nav: FC<NavProps> = () => {
           </LinkWrapper>
         </Box>
       </Box>
-      <MenuIcon
+
+      <Box
         sx={{
-          display: { xs: "inline-block", md: "none" },
+          width: "24px",
+          display: { xs: "flex", md: "none" },
           justifySelf: "end",
           alignSelf: "center",
           position: "relative",
           zIndex: "1",
         }}
         onClick={handleClickMobileMenu}
-      />
+      >
+        <CloseIcon
+          sx={{
+            opacity: showMobileMenu ? "1" : "0",
+            width: showMobileMenu ? "24px" : "0",
+            transition: "all 0.3s",
+          }}
+        />
+        <MenuIcon
+          sx={{
+            opacity: showMobileMenu ? "0" : "1",
+            width: showMobileMenu ? "0" : "24px",
+            transition: "all 0.3s",
+          }}
+        />
+      </Box>
 
       <Box
         component="ul"
         sx={{
           gridColumn: { xs: "1 / 3", md: "2 / 3" },
-          display:
-            /* { xs: showMobileMenu ? "flex" : "none", md: "flex" } */ "flex",
+          display: "flex",
           flexDirection: { xs: "column", md: "row" },
           justifyContent: "end",
           gap: "2rem",
