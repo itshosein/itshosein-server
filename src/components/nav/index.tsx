@@ -16,6 +16,7 @@ import dynamic from "next/dynamic";
 const WindowScrollY = dynamic(() => import("./component/window-scroll-y"), {
   ssr: false,
 });
+import MenuIcon from "@mui/icons-material/Menu";
 
 interface NavProps {}
 
