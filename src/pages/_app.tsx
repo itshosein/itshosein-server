@@ -10,7 +10,7 @@ import Footer from "@components/footer";
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
-  console.log("theme", theme);
+  // console.log("theme", theme);
 
   return (
     <>

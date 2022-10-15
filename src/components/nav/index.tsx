@@ -1,8 +1,7 @@
-import { FC, useState, useRef, useEffect } from "react";
+import { FC, useState, useRef } from "react";
 import {
   Box,
   Button,
-  Grid,
   Typography,
   useMediaQuery,
   useTheme,
@@ -25,6 +24,7 @@ const Nav: FC<NavProps> = () => {
   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
   const navRef = useRef<HTMLDivElement | undefined>(undefined);
   const [pageScroll, setPageScroll] = useState(0);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const handleWindowScroll = (scroll: number) => {
     if (
@@ -37,6 +37,10 @@ const Nav: FC<NavProps> = () => {
     }
   };
 
+  function handleClickMobileMenu() {
+    setShowMobileMenu((pre) => !pre);
+  }
+
   return (
     <Box
       component="nav"
@@ -46,7 +50,10 @@ const Nav: FC<NavProps> = () => {
         width: "100%",
         fontSize: "80%",
         padding: Boolean(pageScroll) ? "1rem" : "2rem",
-        display: "flex",
+        display: "grid",
+        gridTemplateRows: { xs: "0fr 0fr", md: "1fr" },
+        gridTemplateColumns: "1fr 1fr",
+        gap: showMobileMenu ? "2rem 0" : "0",
         justifyContent: "center",
         backgroundColor: (theme) => theme.palette.background.default,
         zIndex: (theme) => theme.zIndex.appBar,
@@ -58,85 +65,94 @@ const Nav: FC<NavProps> = () => {
       }}
     >
       <WindowScrollY scrollCB={handleWindowScroll} />
-      <Grid
-        container
+
+      <Box sx={{ flexBasis: "50%" }}>
+        <Box component="h2" textAlign={mdUp ? "start" : "center"}>
+          <LinkWrapper
+            href="/"
+            width="100%"
+            display="flex"
+            alignItems="center"
+            justifyContent="start"
+          >
+            <CodeIcon />
+            <Typography
+              variant="h5"
+              fontWeight={500}
+              component="span"
+              ml="0.5rem"
+            >
+              Hosein Fathi
+            </Typography>
+          </LinkWrapper>
+        </Box>
+      </Box>
+      <MenuIcon
+        sx={{
+          display: { xs: "inline-block", md: "none" },
+          justifySelf: "end",
+          alignSelf: "center",
+          position: "relative",
+          zIndex: "1",
+        }}
+        onClick={handleClickMobileMenu}
+      />
+
+      <Box
         component="ul"
         sx={{
-          // maxWidth: `calc(${theme.breakpoints.values["lg"]}px - 38px)`,
-          width: "100%",
-          listStyle: "none",
-          display: "flex",
-          justifyContent: { xs: "center", md: "space-between" },
-          flexWrap: { xs: "wrap", md: "nowrap" },
-          alignItems: "center",
+          gridColumn: { xs: "1 / 3", md: "2 / 3" },
+          display:
+            /* { xs: showMobileMenu ? "flex" : "none", md: "flex" } */ "flex",
+          flexDirection: { xs: "column", md: "row" },
+          justifyContent: "end",
           gap: "2rem",
+          flexWrap: "nowrap",
+          listStyle: "none",
+          textAlign: "center",
+          transition: "all 0.3s",
+          height: { xs: showMobileMenu ? "100%" : 0, md: "auto" },
+          opacity: { xs: showMobileMenu ? "1" : "0", md: "1" },
         }}
       >
-        <Grid component="li" item xs={12} md={6}>
-          <Box component="h2" textAlign={mdUp ? "start" : "center"}>
-            <LinkWrapper
-              href="/"
-              width="100%"
-              display="flex"
-              alignItems="center"
-              justifyContent={mdUp ? "start" : "center"}
-            >
-              <CodeIcon />
-              <Typography
-                variant="h5"
-                fontWeight={500}
-                component="span"
-                ml="0.5rem"
-              >
-                Hosein Fathi
-              </Typography>
-            </LinkWrapper>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          container
-          xs={12}
-          md={6}
+        <Box component="li">
+          <LinkWrapper href="#experience">
+            <Typography variant="h6" component="h2">
+              Experience
+            </Typography>
+          </LinkWrapper>
+        </Box>
+        <Box component="li">
+          <LinkWrapper href="#projects">
+            <Typography variant="h6" component="h2">
+              Projects
+            </Typography>
+          </LinkWrapper>
+        </Box>
+        <Box component="li">
+          <LinkWrapper href="#about-me">
+            <Typography variant="h6" component="h2">
+              About
+            </Typography>
+          </LinkWrapper>
+        </Box>
+        <Box component="li">
+          <LinkWrapper href="#contact">
+            <Typography variant="h6" component="h2">
+              Contact
+            </Typography>
+          </LinkWrapper>
+        </Box>
+        <Box
           sx={{
-            justifyContent: { xs: "center", md: "end" },
+            justifySelf: "center",
+            alignSelf: "center",
+            display: "flex",
+            alignItems: "center",
             gap: "2rem",
-            flexWrap: "nowrap",
           }}
         >
-          <Grid item component="li">
-            <LinkWrapper href="#experience">
-              <Typography variant="h6" component="h2">
-                Experience
-              </Typography>
-            </LinkWrapper>
-          </Grid>
-          <Grid item component="li">
-            <LinkWrapper href="#projects">
-              <Typography variant="h6" component="h2">
-                Projects
-              </Typography>
-            </LinkWrapper>
-          </Grid>
-          <Grid item component="li">
-            <LinkWrapper href="#about-me">
-              <Typography variant="h6" component="h2">
-                About
-              </Typography>
-            </LinkWrapper>
-          </Grid>
-          <Grid item component="li">
-            <LinkWrapper href="#contact">
-              <Typography variant="h6" component="h2">
-                Contact
-              </Typography>
-            </LinkWrapper>
-          </Grid>
-          <Grid
-            item
-            component="li"
-            sx={{ justifySelf: "center", alignSelf: "center" }}
-          >
+          <Box component="li">
             <LinkWrapper
               href="https://www.linkedin.com/in/itshosein/"
               target="_blank"
@@ -146,9 +162,8 @@ const Nav: FC<NavProps> = () => {
                 Linkedin
               </Typography>
             </LinkWrapper>
-          </Grid>
-          <Grid
-            item
+          </Box>
+          <Box
             component="li"
             sx={{
               justifySelf: "center",
@@ -162,19 +177,20 @@ const Nav: FC<NavProps> = () => {
                 Github
               </Typography>
             </LinkWrapper>
-          </Grid>
-          <Grid item component="li">
-            <LinkWrapper
-              sx={{ "&:hover": { textDecoration: "none" } }}
-              download="Hosein Fathi Resume"
-              href="https://drive.google.com/file/d/1cjwEQjjpQ2PQoWPkGiTbRWT2wstEnnkm/view?usp=sharing"
-              target="_blank"
-            >
-              <Button variant="contained">Resume</Button>
-            </LinkWrapper>
-          </Grid>
-        </Grid>
-      </Grid>
+          </Box>
+        </Box>
+
+        <Box component="li">
+          <LinkWrapper
+            sx={{ "&:hover": { textDecoration: "none" } }}
+            download="Hosein Fathi Resume"
+            href="https://drive.google.com/file/d/1cjwEQjjpQ2PQoWPkGiTbRWT2wstEnnkm/view?usp=sharing"
+            target="_blank"
+          >
+            <Button variant="contained">Resume</Button>
+          </LinkWrapper>
+        </Box>
+      </Box>
     </Box>
   );
 };
