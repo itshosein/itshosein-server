@@ -10,7 +10,7 @@ export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
   if (req.query.v) {
     const url = `http://www.youtube.com/watch?v=${req.query.v}`;
     ytdl.getBasicInfo(url).then((value) => {
-      const name = `${value.videoDetails.title}  + ${value.videoDetails.likes} - ${value.videoDetails.dislikes}`;
+      const name = `${value.videoDetails.title}`;
       ytdl(url, {
         quality: 247,
       })
