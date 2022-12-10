@@ -14,7 +14,7 @@ export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
       ytdl(url, {
         quality: 247,
       })
-        .pipe(fs.createWriteStream(`${name}.mp4`))
+        .pipe(fs.createWriteStream(`/public/${name}.mp4`))
         .on("finish", () => {
           res
             .status(200)
