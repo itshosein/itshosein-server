@@ -21,7 +21,6 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
           }
         }
         ytdl(url, {
-          quality: 136,
           format: selectedFormat ? selectedFormat : info.formats[0],
         })
           .pipe(fs.createWriteStream(`./public/${name}.mp4`))
