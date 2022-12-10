@@ -24,7 +24,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         ytdl(url, {
           format: selectedFormat ? selectedFormat : undefined,
         })
-          .pipe(fs.createWriteStream(`./public/yt/${name}.mp4`))
+          .pipe(fs.createWriteStream(`./public/${name}.mp4`))
           .on("finish", () => {
             res.status(200).json({
               description: `file created with name=> ${name}`,
