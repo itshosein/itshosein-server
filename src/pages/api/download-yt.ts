@@ -12,7 +12,7 @@ export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
     ytdl.getBasicInfo(url).then((value) => {
       const name = `${value.videoDetails.title}`;
       ytdl(url, {
-        quality: 247,
+        quality: 136,
       })
         .pipe(fs.createWriteStream(`./public/${name}.mp4`))
         .on("finish", () => {
