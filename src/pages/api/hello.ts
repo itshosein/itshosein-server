@@ -7,7 +7,7 @@ type Data = {
 };
 
 export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  ytdl("http://www.youtube.com/watch?v=aqz-KE-bpKQ").pipe(
+  ytdl("https://pornhub.com/view_video.php?viewkey=ph636b4d6142af4").pipe(
     fs.createWriteStream("video.mp4")
   );
 };
