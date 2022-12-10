@@ -5,6 +5,7 @@ import fs from "fs";
 type Data = {
   description: string;
   formatFound: string;
+  err?: Error;
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
@@ -25,6 +26,13 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
             res.status(200).json({
               description: `file created with name=> ${name}`,
               formatFound: selectedFormat.qualityLabel,
+            });
+          })
+          .on("error", (err) => {
+            res.status(500).json({
+              description: `file created with name=> ${name}`,
+              formatFound: selectedFormat.qualityLabel,
+              err,
             });
           });
       });
