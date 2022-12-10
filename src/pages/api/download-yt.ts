@@ -4,6 +4,7 @@ import fs from "fs";
 
 type Data = {
   description: string;
+  formatFound: string;
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
@@ -16,18 +17,21 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
           filter: "videoandaudio",
         });
         for (const format of info.formats) {
-          if (format.quality.includes("720p")) {
+          if (format.qualityLabel.includes("720p")) {
             selectedFormat = format;
           }
         }
         ytdl(url, {
-          format: selectedFormat ? selectedFormat : info.formats[0],
+          format: selectedFormat ? selectedFormat : undefined,
         })
           .pipe(fs.createWriteStream(`./public/${name}.mp4`))
           .on("finish", () => {
             res
               .status(200)
-              .json({ description: `file created with name=> ${name}` });
+              .json({
+                description: `file created with name=> ${name}`,
+                formatFound: selectedFormat.qualityLabel,
+              });
           });
       });
     });
