@@ -16,8 +16,10 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       .then((value) => {
         const name = `${value.videoDetails.title}`;
         ytdl.getInfo(req.query.v as string).then((info) => {
-          let selectedFormat: ytdl.videoFormat = info.formats.filter(
-            (format) => format.qualityLabel.includes("720") && format.hasAudio
+          let videoFormats = ytdl.filterFormats(info.formats, "videoandaudio");
+
+          let selectedFormat: ytdl.videoFormat = videoFormats.filter((format) =>
+            format.qualityLabel.includes("720")
           )[0];
 
           ytdl(url, {
