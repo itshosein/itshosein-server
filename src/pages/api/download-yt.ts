@@ -12,11 +12,17 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     ytdl.getBasicInfo(url).then((value) => {
       const name = `${value.videoDetails.title}`;
       ytdl.getInfo(req.query.v as string).then((info) => {
-        let formats = ytdl.filterFormats(info.formats, "videoandaudio");
-
+        let selectedFormat: ytdl.videoFormat = ytdl.chooseFormat(info.formats, {
+          filter: "videoandaudio",
+        });
+        for (const format of info.formats) {
+          if (format.quality.includes("720p")) {
+            selectedFormat = format;
+          }
+        }
         ytdl(url, {
           quality: 136,
-          format: formats[0],
+          format: selectedFormat ? selectedFormat : info.formats[0],
         })
           .pipe(fs.createWriteStream(`./public/${name}.mp4`))
           .on("finish", () => {
