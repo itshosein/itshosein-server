@@ -4,6 +4,7 @@ import fs from "fs";
 
 type Data = {
   description: string;
+  name?: string;
   formatFound?: string;
   err?: Error;
 };
@@ -28,13 +29,15 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
             .pipe(fs.createWriteStream(`./public/yt/${name}.mp4`))
             .on("finish", () => {
               res.status(200).json({
-                description: `file created with name=> ${name}`,
+                description: "file created successfully",
+                name: name,
                 formatFound: selectedFormat.qualityLabel,
               });
             })
             .on("error", (err) => {
               res.status(500).json({
-                description: `file not created with name=> ${name}`,
+                description: "file NOT created",
+                name: name,
                 formatFound: selectedFormat.qualityLabel,
                 err,
               });
@@ -43,7 +46,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       })
       .catch((err) => {
         res.status(500).json({
-          description: `file not created with name=> ${name}`,
+          description: "file NOT created",
           err,
         });
       });
