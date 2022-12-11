@@ -25,13 +25,13 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
           ytdl(url, {
             format: selectedFormat,
           })
-            .pipe(/* fs.createWriteStream(`./public/yt/${name}.mp4`) */ res)
-            // .on("finish", () => {
-            //   res.status(200).json({
-            //     description: `file created with name=> ${name}`,
-            //     formatFound: selectedFormat.qualityLabel,
-            //   });
-            // })
+            .pipe(fs.createWriteStream(`./public/yt/${name}.mp4`))
+            .on("finish", () => {
+              res.status(200).json({
+                description: `file created with name=> ${name}`,
+                formatFound: selectedFormat.qualityLabel,
+              });
+            })
             .on("error", (err) => {
               res.status(500).json({
                 description: `file not created with name=> ${name}`,
