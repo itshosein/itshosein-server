@@ -9,7 +9,7 @@ type Data = {
   err?: Error;
 };
 
-export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.query.v) {
     const url = `http://www.youtube.com/watch?v=${req.query.v}`;
     ytdl
@@ -28,11 +28,23 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
           })
             .pipe(fs.createWriteStream(`./public/yt/${name}.mp4`))
             .on("finish", () => {
-              res.status(200).json({
-                description: "file created successfully",
-                name: name,
-                formatFound: selectedFormat.qualityLabel,
-              });
+              try {
+                const data = fs.readFileSync(`./public/yt/${name}.mp4`);
+                res.send(data);
+                res.status(200).json({
+                  description: "file created successfully",
+                  name: name,
+                  formatFound: selectedFormat.qualityLabel,
+                });
+              } catch (error) {
+                console.error(error);
+                res.status(500).json({
+                  description: "file NOT created",
+                  name: name,
+                  formatFound: selectedFormat.qualityLabel,
+                  error,
+                });
+              }
             })
             .on("error", (err) => {
               res.status(500).json({
