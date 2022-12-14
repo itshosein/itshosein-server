@@ -3,7 +3,6 @@ import fs from "fs";
 
 type Data = {
   files: string[];
-  ip?: string;
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
