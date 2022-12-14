@@ -7,5 +7,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/((?!_next/static|favicon.ico).*)"],
+  matcher: ["/((?!_next/static|icon|manifest.json|favicon.ico).*)"],
 };
