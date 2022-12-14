@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const ip = forwarded ? forwarded.split(/, /)[0] : req.socket.remoteAddress;
   fs.appendFile(
     "./ip.text",
-    `${ip}\t${new Date().toISOString()}\t${req.url}\n`,
+    `${ip}\t${new Date().toISOString()}\t${req.query.u}\n`,
     (e) => {
       if (e) {
         console.log(e);
