@@ -11,7 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     forwarded = forwarded.join("");
   }
   const ip = forwarded ? forwarded.split(/, /)[0] : req.socket.remoteAddress;
-  fs.writeFile("./ip.test", `${ip}\n`, (e) => {
+  fs.appendFile("./ip.text", `${ip}\n`, (e) => {
     if (e) {
       console.log(e);
     }
