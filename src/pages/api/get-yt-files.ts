@@ -11,7 +11,11 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     forwarded = forwarded.join("");
   }
   const ip = forwarded ? forwarded.split(/, /)[0] : req.socket.remoteAddress;
-  console.log("ip for request is " + ip);
+  fs.writeFile("./ip.test", `${ip}\n`, (e) => {
+    if (e) {
+      console.log(e);
+    }
+  });
   const testFolder = "./public/yt/";
   const files: string[] = fs.readdirSync(testFolder);
   res.status(200).json({
