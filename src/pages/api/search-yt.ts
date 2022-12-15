@@ -11,10 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (err) return console.log(err);
 
     if (results?.length) {
-      res.status(200).json({
-        resultLength: results.length,
-        videos: results,
-      });
+      res.status(200).json(results);
     } else {
       res.status(500).json({
         error: "some error happened",

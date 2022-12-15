@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
+import { Grid, CssBaseline } from "@mui/material";
 import theme from "../theme";
 import Nav from "@components/nav";
 import Footer from "@components/footer";
@@ -20,8 +20,15 @@ export default function MyApp(props: AppProps) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Nav />
-
-        <Component {...pageProps} />
+        <Grid
+          sx={{
+            minHeight: "calc(100vh - 200px)",
+          }}
+          container
+          xs={12}
+        >
+          <Component {...pageProps} />
+        </Grid>
         <Footer />
       </ThemeProvider>
     </>
