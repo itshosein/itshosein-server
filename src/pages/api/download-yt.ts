@@ -29,8 +29,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             .pipe(fs.createWriteStream(`./public/yt/${name}.mp4`))
             .on("finish", () => {
               try {
-                const data = fs.readFileSync(`./public/yt/${name}.mp4`);
-                res.send(data);
                 res.status(200).json({
                   description: "file created successfully",
                   name: name,

@@ -54,14 +54,17 @@ function YoutubeSearch() {
 
   const handleSearchYoutube = async () => {
     setLoading(true);
-    const result = await fetch(
-      `https://www.itshosein.com/api/search-yt?q=${search}`
-    );
-    setLoading(false);
-    if (result.status === 200) {
-      const ytResult = (await result.json()) as IYoutubeListItem[];
-      // const videos = ytResult.filter((res) => res.kind === "youtube#video");
-      setVideoResult(ytResult);
+    try {
+      const result = await fetch(
+        `https://www.itshosein.com/api/search-yt?q=${search}`
+      );
+      setLoading(false);
+      if (result.status === 200) {
+        const ytResult = (await result.json()) as IYoutubeListItem[];
+        setVideoResult(ytResult);
+      }
+    } catch (e) {
+      setLoading(false);
     }
   };
 
@@ -70,7 +73,7 @@ function YoutubeSearch() {
   return (
     <Container fixed>
       <Grid container xs={12}>
-        <Grid xs={12} md={9}>
+        <Grid item xs={12} md={9}>
           <TextField
             fullWidth
             label="search youtube"
@@ -78,8 +81,9 @@ function YoutubeSearch() {
             onChange={handleSearchChange}
           />
         </Grid>
-        <Grid xs={0} md={1} />
+        <Grid item xs={0} md={1} />
         <Grid
+          item
           xs={12}
           md={2}
           sx={{
@@ -114,6 +118,8 @@ function YoutubeSearch() {
           <Skeleton sx={{ minHeight: "100px", width: "100%" }} />
         ) : (
           <Grid
+            item
+            container
             xs={12}
             sx={{
               mt: 2,
@@ -131,6 +137,8 @@ function YoutubeSearch() {
                     borderRadius: "15px",
                     p: 2,
                   }}
+                  item
+                  container
                   onClick={() => handleVideoClick(video)}
                 >
                   <Typography variant="h6">{video.title}</Typography>
@@ -140,9 +148,21 @@ function YoutubeSearch() {
                   <Typography variant="body2" mt={4}>
                     {video.views} views
                   </Typography>
-                  <Typography variant="body2" mt={4}>
-                    {video.snippet.publishedAt}
-                  </Typography>
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Typography variant="body2">
+                      {video.snippet.publishedAt}
+                    </Typography>
+                    <Typography variant="body2">
+                      {video.duration_raw}
+                    </Typography>
+                  </Grid>
                 </Grid>
               );
             })}
