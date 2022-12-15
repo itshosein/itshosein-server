@@ -1,17 +1,24 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
-import * as yt from "youtube-search-without-api-key";
+import search, { YouTubeSearchOptions } from "youtube-search";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const videos = await yt.search(`${req.query.q}`);
-  if (videos.length) {
-    res.status(200).json({
-      resultLength: videos.length,
-      videos: videos,
-    });
-  } else {
-    res.status(500).json({
-      error: "some error happened",
-    });
-  }
+  const opts: YouTubeSearchOptions = {
+    maxResults: 10,
+    key: "AIzaSyCStRbDC_cbmNPp_69JjYXfwVnJ2M35XJE",
+  };
+  search(`${req.query.q}`, opts, function (err, results) {
+    if (err) return console.log(err);
+
+    if (results?.length) {
+      res.status(200).json({
+        resultLength: results.length,
+        videos: results,
+      });
+    } else {
+      res.status(500).json({
+        error: "some error happened",
+      });
+    }
+  });
 };
