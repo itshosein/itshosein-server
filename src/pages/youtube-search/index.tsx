@@ -33,7 +33,9 @@ function YoutubeSearch() {
 
   const handleSearchYoutube = async () => {
     setLoading(true);
-    const result = await fetch(`/api/search-yt?q=${search}`);
+    const result = await fetch(
+      `https://www.itshosein.com/api/search-yt?q=${search}`
+    );
     setLoading(false);
     if (result.status === 200) {
       const ytResult = (await result.json()) as YouTubeSearchResults[];
@@ -62,9 +64,14 @@ function YoutubeSearch() {
             alignItems: "center",
           }}
         >
-          <Button variant="contained" onClick={handleSearchYoutube}>
+          <Button
+            variant="contained"
+            onClick={handleSearchYoutube}
+            disabled={loading}
+          >
             {loading ? (
               <CircularProgress
+                size={30}
                 sx={{
                   color: "primary.dark",
                 }}
@@ -78,7 +85,7 @@ function YoutubeSearch() {
           </Button>
         </Grid>
 
-        {loading && !searchResult ? (
+        {loading ? (
           <Skeleton sx={{ minHeight: "100px", width: "100%" }} />
         ) : (
           <Grid
