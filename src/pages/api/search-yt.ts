@@ -4,7 +4,7 @@ import search, { YouTubeSearchOptions } from "youtube-search";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const opts: YouTubeSearchOptions = {
-    maxResults: 10,
+    maxResults: 1000,
     key: "AIzaSyCStRbDC_cbmNPp_69JjYXfwVnJ2M35XJE",
   };
   search(`${req.query.q}`, opts, function (err, results) {
