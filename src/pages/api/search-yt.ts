@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { IYoutubeListItem } from "pages/youtube-search";
+import { IYoutubeListItem } from "pages/youtube/search";
 import * as yt from "youtube-search-without-api-key";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

@@ -14,7 +14,9 @@ function YoutubeVideos() {
 
   const getData = async () => {
     setLoading(true);
-    if (router.query.v) {
+    if (router.query.name && typeof router.query.name == "string") {
+      setFileName(router.query.name);
+    } else if (router.query.v) {
       try {
         const response = await fetch(
           `https://itshosein.com/api/download-yt?v=${router.query.v}`

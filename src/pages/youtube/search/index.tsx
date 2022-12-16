@@ -108,7 +108,7 @@ function YoutubeSearch() {
   const handleVideoClick = (video: IYoutubeListItem) => {
     router.push({
       pathname: "/youtube-video",
-      query: video.id.videoId,
+      query: { v: video.id.videoId },
     });
   };
 
