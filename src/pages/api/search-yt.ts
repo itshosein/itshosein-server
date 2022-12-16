@@ -14,6 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       console.log(b64.substring(0, 10));
       thumbnailB64List.push(b64);
     })
+    console.log(thumbnailB64List);
     res.status(200).json({
       videos,
       thumbnailB64List
