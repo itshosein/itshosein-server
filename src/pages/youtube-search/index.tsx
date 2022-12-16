@@ -45,6 +45,7 @@ function YoutubeSearch() {
   const [videoResult, setVideoResult] = useState<IYoutubeListItem[] | null>(
     null
   );
+  const [thumbnails, setThumbnails] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
   const handleSearchChange = (
@@ -54,6 +55,7 @@ function YoutubeSearch() {
   };
 
   const handleSearchYoutube = async () => {
+    setThumbnails([]);
     setVideoResult([]);
     setLoading(true);
     try {
@@ -63,10 +65,36 @@ function YoutubeSearch() {
       setLoading(false);
       if (result.status === 200) {
         const ytResult = (await result.json()) as IYoutubeListItem[];
+        setThumbnails(new Array(ytResult.length + 1).fill(""));
         setVideoResult(ytResult);
       }
     } catch (e) {
       setLoading(false);
+    }
+  };
+
+  const handleClickThumbnail = async (
+    video: IYoutubeListItem,
+    index: number
+  ) => {
+    if (!thumbnails[index]) {
+      try {
+        const result = await fetch(
+          `https://www.itshosein.com/api/dl-thumbnail?url=${video.snippet.thumbnails.default.url}`
+        );
+        if (result.status === 200) {
+          const ytResult = await result.json();
+          if (ytResult.fileB64) {
+            setThumbnails((pre) => {
+              let newState = [...pre];
+              newState[index] = ytResult.fileB64;
+              return newState;
+            });
+          }
+        }
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -130,7 +158,7 @@ function YoutubeSearch() {
               gap: 2,
             }}
           >
-            {videoResult?.map((video) => {
+            {videoResult?.map((video, index) => {
               return (
                 <Grid
                   sx={{
@@ -144,15 +172,28 @@ function YoutubeSearch() {
                   onClick={() => handleVideoClick(video)}
                 >
                   <Grid item xs={4}>
-                    <Box
-                      component={"img"}
-                      src={video.snippet.thumbnails.default.url}
-                      alt="video_thumbnail"
-                      sx={{
-                        width: video.snippet.thumbnails.default.width,
-                        height: video.snippet.thumbnails.default.height,
-                      }}
-                    />
+                    {thumbnails[index] ? (
+                      <Box
+                        component={"img"}
+                        src={video.snippet.thumbnails.default.url}
+                        alt="video_thumbnail"
+                        sx={{
+                          width: video.snippet.thumbnails.default.width,
+                          height: video.snippet.thumbnails.default.height,
+                        }}
+                      />
+                    ) : (
+                      <Box
+                        component={Typography}
+                        sx={{
+                          width: video.snippet.thumbnails.default.width,
+                          height: video.snippet.thumbnails.default.height,
+                        }}
+                        onClick={() => handleClickThumbnail(video, index)}
+                      >
+                        click for video thumbnail
+                      </Box>
+                    )}
                   </Grid>
                   <Grid item xs={8}>
                     <Typography variant="h6">{video.title}</Typography>
