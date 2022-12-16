@@ -6,19 +6,31 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   let videos: IYoutubeListItem[] = await yt.search(`${req.query.q}`);
   if (videos?.length) {
     let thumbnailB64List: string[] = []
-    await videos.forEach(async (video) => {
+    for (const video of videos) {
       const response = await fetch(video.snippet.thumbnails.default.url);
       const data = await response.arrayBuffer();
       // const type = response.headers.get("content-type");
       const b64 = Buffer.from(data).toString('base64');
       console.log(b64.substring(0, 10));
       thumbnailB64List.push(b64);
-    })
+    }
     console.log(thumbnailB64List);
-    res.status(200).json({
-      videos,
-      thumbnailB64List
-    });
+    videos = videos.map((video, index) => {
+      return {
+        ...video,
+        snippet: {
+          ...video.snippet,
+          thumbnails: {
+            ...video.snippet.thumbnails,
+            default: {
+              ...video.snippet.thumbnails.default,
+              url: thumbnailB64List[index]
+            }
+          }
+        }
+      }
+    })
+    res.status(200).json(videos);
   } else {
     res.status(500).json({
       error: "some error happened",
