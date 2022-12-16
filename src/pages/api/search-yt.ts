@@ -6,7 +6,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   let videos: IYoutubeListItem[] = await yt.search(`${req.query.q}`);
   if (videos?.length) {
     let thumbnailB64List: string[] = []
-    videos.forEach(async (video) => {
+    await videos.forEach(async (video) => {
       const response = await fetch(video.snippet.thumbnails.default.url);
       const data = await response.arrayBuffer();
       // const type = response.headers.get("content-type");
