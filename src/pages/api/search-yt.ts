@@ -9,9 +9,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     videos.forEach(async (video) => {
       const response = await fetch(video.snippet.thumbnails.default.url);
       const data = await response.arrayBuffer();
-      const type = response.headers.get("content-type");
-      const b64 = "data:" + type + ";base64," + Buffer.from(data).toString('base64');
-      console.log(b64);
+      // const type = response.headers.get("content-type");
+      const b64 = Buffer.from(data).toString('base64');
+      console.log(b64.substring(0, 10));
       thumbnailB64List.push(b64);
     })
     res.status(200).json({
