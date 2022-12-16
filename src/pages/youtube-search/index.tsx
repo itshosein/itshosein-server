@@ -80,7 +80,7 @@ function YoutubeSearch() {
     if (!thumbnails[index]) {
       try {
         const result = await fetch(
-          `https://www.itshosein.com/api/dl-thumbnail?url=${video.snippet.thumbnails.default.url}`
+          `https://www.itshosein.com/api/dl-thumbnail?url=${encodeURIComponent(video.snippet.thumbnails.default.url)}`
         );
         if (result.status === 200) {
           const ytResult = await result.json();
