@@ -99,6 +99,9 @@ function YoutubeSearch() {
   };
 
   const handleVideoClick = (video: IYoutubeListItem) => {};
+  
+  console.log(thumbnails);
+  
 
   return (
     <Container fixed>
