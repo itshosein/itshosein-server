@@ -13,7 +13,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { YouTubeSearchResults } from "youtube-search";
 import { grey } from "@mui/material/colors";
 
-interface IYoutubeListItem {
+export interface IYoutubeListItem {
   id: {
     videoId: any;
   };
