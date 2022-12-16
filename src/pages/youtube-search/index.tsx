@@ -37,6 +37,7 @@ export interface IYoutubeListItem {
     views: any;
   };
   views: any;
+  b64?: string;
 }
 
 function YoutubeSearch() {

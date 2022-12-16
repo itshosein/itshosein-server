@@ -15,16 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     videos = videos.map((video, index) => {
       return {
         ...video,
-        snippet: {
-          ...video.snippet,
-          thumbnails: {
-            ...video.snippet.thumbnails,
-            default: {
-              ...video.snippet.thumbnails.default,
-              url: thumbnailB64List[index]
-            }
-          }
-        }
+        b64: thumbnailB64List[index]
       }
     })
     res.status(200).json(videos);
