@@ -23,7 +23,7 @@ function YoutubeVideos() {
         );
         const data = await response.json();
         if (data.name) {
-          setFileName(data.name);
+          setFileName(`${data.name}.mp4`);
         }
       } finally {
         setLoading(false);
@@ -51,7 +51,7 @@ function YoutubeVideos() {
           controls
           muted
           autoPlay
-          url={`https://www.itshosein.com/yt/${fileName}.mp4`}
+          url={`https://www.itshosein.com/yt/${fileName}`}
         />
       )}
     </Container>
