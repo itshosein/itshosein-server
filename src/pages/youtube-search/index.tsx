@@ -6,6 +6,7 @@ import {
   Skeleton,
   TextField,
   Typography,
+  Box,
 } from "@mui/material";
 import { GetServerSidePropsContext } from "next";
 import { useState, ChangeEvent } from "react";
@@ -37,7 +38,6 @@ export interface IYoutubeListItem {
     views: any;
   };
   views: any;
-  b64?: string;
 }
 
 function YoutubeSearch() {
@@ -54,6 +54,7 @@ function YoutubeSearch() {
   };
 
   const handleSearchYoutube = async () => {
+    setVideoResult([]);
     setLoading(true);
     try {
       const result = await fetch(
@@ -142,27 +143,40 @@ function YoutubeSearch() {
                   container
                   onClick={() => handleVideoClick(video)}
                 >
-                  <Typography variant="h6">{video.title}</Typography>
-                  <Typography variant="body1" mt={1}>
-                    {video.description}
-                  </Typography>
-                  <Typography variant="body2" mt={4}>
-                    {video.views} views
-                  </Typography>
-                  <Grid
-                    item
-                    xs={12}
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <Typography variant="body2">
-                      {video.snippet.publishedAt}
+                  <Grid item xs={4}>
+                    <Box
+                      component={"img"}
+                      src={video.snippet.thumbnails.default.url}
+                      alt="video_thumbnail"
+                      sx={{
+                        width: video.snippet.thumbnails.default.width,
+                        height: video.snippet.thumbnails.default.height,
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={8}>
+                    <Typography variant="h6">{video.title}</Typography>
+                    <Typography variant="body1" mt={1}>
+                      {video.description}
                     </Typography>
-                    <Typography variant="body2">
-                      {video.duration_raw}
+                    <Typography variant="body2" mt={4}>
+                      {video.views} views
                     </Typography>
+                    <Grid
+                      item
+                      xs={12}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Typography variant="body2">
+                        {video.snippet.publishedAt}
+                      </Typography>
+                      <Typography variant="body2">
+                        {video.duration_raw}
+                      </Typography>
+                    </Grid>
                   </Grid>
                 </Grid>
               );
