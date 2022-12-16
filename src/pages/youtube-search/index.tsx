@@ -175,7 +175,7 @@ function YoutubeSearch() {
                     {thumbnails[index] ? (
                       <Box
                         component={"img"}
-                        src={video.snippet.thumbnails.default.url}
+                        src={thumbnails[index]}
                         alt="video_thumbnail"
                         sx={{
                           width: video.snippet.thumbnails.default.width,
