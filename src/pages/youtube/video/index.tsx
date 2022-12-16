@@ -11,6 +11,7 @@ function YoutubeVideos() {
   const router = useRouter();
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState(false);
+  console.log(router);
 
   const getData = async () => {
     if (router.query.name && typeof router.query.name == "string") {
@@ -32,8 +33,10 @@ function YoutubeVideos() {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
+    if ((router.query.name || router.query.v) && !loading) {
+      getData();
+    }
+  }, [router.query]);
 
   return (
     <Container fixed sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
@@ -49,7 +52,7 @@ function YoutubeVideos() {
           controls
           muted
           autoPlay
-          url={`https://www.itshosein.com/yt/${fileName}`}
+          url={`https://www.itshosein.com/yt/${fileName}.mp4`}
         />
       )}
     </Container>

@@ -193,12 +193,10 @@ function YoutubeSearch() {
                         component={"img"}
                         src={thumbnails[index]}
                         alt="video_thumbnail"
-                        sx={
-                          {
-                            // width: video.snippet.thumbnails.default.width,
-                            // height: video.snippet.thumbnails.default.height,
-                          }
-                        }
+                        sx={{
+                          maxWidth: "100%",
+                          maxHeight: "100%",
+                        }}
                       />
                     ) : (
                       <Box
@@ -206,6 +204,9 @@ function YoutubeSearch() {
                         sx={{
                           // width: video.snippet.thumbnails.default.width,
                           // height: video.snippet.thumbnails.default.height,
+                          minHeight: "200px",
+                          border: "1px solid white",
+                          borderRadius: "10px",
                           display: "flex",
                           justifyContent: "center",
                           alignItems: "center",
