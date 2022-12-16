@@ -12,7 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const data = await response.arrayBuffer();
       const type = response.headers.get("content-type")?.split("/")[1];
       const b64 = Buffer.from(data).toString('base64');
-      fs.writeFileSync(`./public/yt/thumbnails/${video.title}.${type}`, b64)
+      fs.appendFileSync(`./public/yt/thumbnails/${video.title}.text`, b64)
       // console.log(b64.substring(0, 10));
       thumbnailB64List.push(`${video.title}.${type}`);
     }
