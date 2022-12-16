@@ -11,7 +11,6 @@ function YoutubeVideos() {
   const router = useRouter();
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState(false);
-  console.log(router);
 
   const getData = async () => {
     if (router.query.name && typeof router.query.name == "string") {
