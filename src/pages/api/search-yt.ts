@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { IYoutubeListItem } from "pages/youtube-search";
 import * as yt from "youtube-search-without-api-key";
+import fs from "fs"
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   let videos: IYoutubeListItem[] = await yt.search(`${req.query.q}`);
@@ -9,10 +10,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     for (const video of videos) {
       const response = await fetch(video.snippet.thumbnails.default.url);
       const data = await response.arrayBuffer();
-      // const type = response.headers.get("content-type");
+      const type = response.headers.get("content-type")?.split("/")[1];
       const b64 = Buffer.from(data).toString('base64');
-      console.log(b64.substring(0, 10));
-      thumbnailB64List.push(b64);
+      fs.writeFileSync(`./public/yt/thumbnails/${video.title}.${type}`, b64)
+      // console.log(b64.substring(0, 10));
+      thumbnailB64List.push(`${video.title}.${type}`);
     }
     console.log(thumbnailB64List);
     videos = videos.map((video, index) => {
