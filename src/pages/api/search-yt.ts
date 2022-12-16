@@ -12,13 +12,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const b64 = Buffer.from(data).toString('base64');
       thumbnailB64List.push(b64);
     })
-    videos = videos.map((video, index) => {
-      return {
-        ...video,
-        b64: thumbnailB64List[index]
-      }
-    })
-    res.status(200).json(videos);
+    res.status(200).json({
+      videos,
+      thumbnailB64List
+    });
   } else {
     res.status(500).json({
       error: "some error happened",
