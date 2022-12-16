@@ -80,7 +80,9 @@ function YoutubeSearch() {
     if (!thumbnails[index]) {
       try {
         const result = await fetch(
-          `https://www.itshosein.com/api/dl-thumbnail?url=${encodeURIComponent(video.snippet.thumbnails.default.url)}`
+          `https://www.itshosein.com/api/dl-thumbnail?url=${encodeURIComponent(
+            video.snippet.thumbnails.default.url
+          )}`
         );
         if (result.status === 200) {
           const ytResult = await result.json();
@@ -99,9 +101,6 @@ function YoutubeSearch() {
   };
 
   const handleVideoClick = (video: IYoutubeListItem) => {};
-  
-  console.log(thumbnails);
-  
 
   return (
     <Container fixed>
@@ -168,43 +167,50 @@ function YoutubeSearch() {
                     border: "1px solid",
                     borderColor: grey["400"],
                     borderRadius: "15px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
                     p: 2,
+                    py: 4
                   }}
                   item
                   container
                   onClick={() => handleVideoClick(video)}
                 >
-                  <Grid item xs={4}>
+                  <Box>
                     {thumbnails[index] ? (
                       <Box
                         component={"img"}
                         src={thumbnails[index]}
                         alt="video_thumbnail"
                         sx={{
-                          width: video.snippet.thumbnails.default.width,
-                          height: video.snippet.thumbnails.default.height,
+                          // width: video.snippet.thumbnails.default.width,
+                          // height: video.snippet.thumbnails.default.height,
                         }}
                       />
                     ) : (
                       <Box
                         component={Typography}
                         sx={{
-                          width: video.snippet.thumbnails.default.width,
-                          height: video.snippet.thumbnails.default.height,
+                          // width: video.snippet.thumbnails.default.width,
+                          // height: video.snippet.thumbnails.default.height,
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center"
                         }}
                         onClick={() => handleClickThumbnail(video, index)}
                       >
                         click for video thumbnail
                       </Box>
                     )}
-                  </Grid>
-                  <Grid item xs={8}>
+                  </Box>
+                  <Box>
                     <Typography variant="h6">{video.title}</Typography>
                     <Typography variant="body1" mt={1}>
                       {video.description}
                     </Typography>
                     <Typography variant="body2" mt={4}>
-                      {video.views} views
+                      {video.views.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} views
                     </Typography>
                     <Grid
                       item
@@ -221,7 +227,7 @@ function YoutubeSearch() {
                         {video.duration_raw}
                       </Typography>
                     </Grid>
-                  </Grid>
+                  </Box>
                 </Grid>
               );
             })}
