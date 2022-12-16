@@ -9,7 +9,7 @@ import {
   Box,
 } from "@mui/material";
 import { GetServerSidePropsContext } from "next";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, MouseEvent } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { YouTubeSearchResults } from "youtube-search";
 import { grey } from "@mui/material/colors";
@@ -78,8 +78,10 @@ function YoutubeSearch() {
 
   const handleClickThumbnail = async (
     video: IYoutubeListItem,
-    index: number
+    index: number,
+    e: MouseEvent<HTMLSpanElement, globalThis.MouseEvent>
   ) => {
+    e.stopPropagation();
     if (!thumbnails[index]) {
       try {
         const result = await fetch(
@@ -105,7 +107,7 @@ function YoutubeSearch() {
 
   const handleVideoClick = (video: IYoutubeListItem) => {
     router.push({
-      pathname: "/youtube-search",
+      pathname: "/youtube-video",
       query: video.id.videoId,
     });
   };
@@ -208,7 +210,7 @@ function YoutubeSearch() {
                           justifyContent: "center",
                           alignItems: "center",
                         }}
-                        onClick={() => handleClickThumbnail(video, index)}
+                        onClick={(e) => handleClickThumbnail(video, index, e)}
                       >
                         click for video thumbnail
                       </Box>
