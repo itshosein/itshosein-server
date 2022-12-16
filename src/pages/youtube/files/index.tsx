@@ -9,7 +9,7 @@ function YtFiles(props: { files: string[] }) {
 
   const handleFileClick = (file: string) => {
     router.push({
-      pathname: "/youtube-video",
+      pathname: "/youtube/video",
       query: { name: file },
     });
   };
