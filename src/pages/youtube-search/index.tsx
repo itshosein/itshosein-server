@@ -13,6 +13,7 @@ import { useState, ChangeEvent } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { YouTubeSearchResults } from "youtube-search";
 import { grey } from "@mui/material/colors";
+import { useRouter } from "next/router";
 
 export interface IYoutubeListItem {
   id: {
@@ -41,6 +42,8 @@ export interface IYoutubeListItem {
 }
 
 function YoutubeSearch() {
+  const router = useRouter();
+
   const [search, setSearch] = useState("");
   const [videoResult, setVideoResult] = useState<IYoutubeListItem[] | null>(
     null
@@ -100,7 +103,12 @@ function YoutubeSearch() {
     }
   };
 
-  const handleVideoClick = (video: IYoutubeListItem) => {};
+  const handleVideoClick = (video: IYoutubeListItem) => {
+    router.push({
+      pathname: "/youtube-search",
+      query: video.id.videoId,
+    });
+  };
 
   return (
     <Container fixed>
@@ -171,7 +179,7 @@ function YoutubeSearch() {
                     flexDirection: "column",
                     alignItems: "center",
                     p: 2,
-                    py: 4
+                    py: 4,
                   }}
                   item
                   container
@@ -183,10 +191,12 @@ function YoutubeSearch() {
                         component={"img"}
                         src={thumbnails[index]}
                         alt="video_thumbnail"
-                        sx={{
-                          // width: video.snippet.thumbnails.default.width,
-                          // height: video.snippet.thumbnails.default.height,
-                        }}
+                        sx={
+                          {
+                            // width: video.snippet.thumbnails.default.width,
+                            // height: video.snippet.thumbnails.default.height,
+                          }
+                        }
                       />
                     ) : (
                       <Box
@@ -196,7 +206,7 @@ function YoutubeSearch() {
                           // height: video.snippet.thumbnails.default.height,
                           display: "flex",
                           justifyContent: "center",
-                          alignItems: "center"
+                          alignItems: "center",
                         }}
                         onClick={() => handleClickThumbnail(video, index)}
                       >
@@ -210,7 +220,10 @@ function YoutubeSearch() {
                       {video.description}
                     </Typography>
                     <Typography variant="body2" mt={4}>
-                      {video.views.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} views
+                      {video.views
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                      views
                     </Typography>
                     <Grid
                       item
