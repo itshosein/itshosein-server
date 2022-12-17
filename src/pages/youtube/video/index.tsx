@@ -23,7 +23,11 @@ function YoutubeVideos() {
         );
         const data = await response.json();
         if (data.name) {
-          setFileName(`${data.name}.mp4`);
+          if (data.name.includes(".mp4")) {
+            setFileName(`${data.name}`);
+          } else {
+            setFileName(`${data.name}.mp4`);
+          }
         }
       } finally {
         setLoading(false);
