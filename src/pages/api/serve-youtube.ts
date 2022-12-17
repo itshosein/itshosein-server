@@ -55,6 +55,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.end();
     }
 
+    console.log("start", start, "end", end);
+
+
     else {
       // Listing 5.
       let retrievedLength;
@@ -70,6 +73,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       else {
         retrievedLength = contentLength;
       }
+
+      console.log("retrievedLength", retrievedLength);
+
 
       // Listing 6.
       res.statusCode = start !== undefined || end !== undefined ? 206 : 200;
