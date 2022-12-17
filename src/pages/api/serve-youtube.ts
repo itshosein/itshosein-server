@@ -33,6 +33,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
   }
 
+  if (!options.end && options.start) {
+    options.end = end = options.start + 50_000_000
+  }
+
   res.setHeader("content-type", "video/mp4");
 
   fs.stat(filePath, (err, stat) => {
