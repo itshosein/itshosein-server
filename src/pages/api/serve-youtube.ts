@@ -47,30 +47,23 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     let contentLength = stat.size;
+    console.log("start", start, "end", end);
 
     if (req.method === "HEAD") {
       res.statusCode = 200;
       res.setHeader("accept-ranges", "bytes");
       res.setHeader("content-length", contentLength);
       res.end();
-    }
-
-    console.log("start", start, "end", end);
-
-
-    else {
+    } else {
       // Listing 5.
       let retrievedLength;
       if (start !== undefined && end !== undefined) {
         retrievedLength = (end + 1) - start;
-      }
-      else if (start !== undefined) {
+      } else if (start !== undefined) {
         retrievedLength = contentLength - start;
-      }
-      else if (end !== undefined) {
+      } else if (end !== undefined) {
         retrievedLength = (end + 1);
-      }
-      else {
+      } else {
         retrievedLength = contentLength;
       }
 
