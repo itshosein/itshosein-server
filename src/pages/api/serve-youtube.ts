@@ -70,6 +70,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       } else {
         retrievedLength = contentLength;
       }
+      retrievedLength += retrievedLength + 20_000_000;
+
 
       console.log("retrievedLength", retrievedLength);
 
