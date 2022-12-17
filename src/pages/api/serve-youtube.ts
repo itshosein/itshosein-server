@@ -13,7 +13,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   let end: number;
 
   const range = req.headers.range;
-  console.log("range", range);
 
   if (range) {
     const bytesPrefix = "bytes=";
@@ -33,10 +32,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
   }
 
-  if (!options.end && options.start) {
-    options.end = end = options.start + 50_000_000
-  }
-
   res.setHeader("content-type", "video/mp4");
 
   fs.stat(filePath, (err, stat) => {
@@ -51,7 +46,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     let contentLength = stat.size;
-    console.log("start", start, "end", end);
 
     if (req.method === "HEAD") {
       res.statusCode = 200;
@@ -70,13 +64,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       } else {
         retrievedLength = contentLength;
       }
-      retrievedLength += retrievedLength + 20_000_000;
-
-
-      console.log("retrievedLength", retrievedLength);
-
-
-
 
       // Listing 6.
       res.statusCode = start !== undefined || end !== undefined ? 206 : 200;
