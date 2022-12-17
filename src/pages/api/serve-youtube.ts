@@ -94,3 +94,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
   });
 };
+
+export const config = {
+  api: {
+    responseLimit: false,
+  },
+}
