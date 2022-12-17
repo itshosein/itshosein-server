@@ -69,6 +69,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       console.log("retrievedLength", retrievedLength);
 
+      if (!options.end && options.start) {
+        options.end = options.start + 50_000_000
+      }
+
 
       // Listing 6.
       res.statusCode = start !== undefined || end !== undefined ? 206 : 200;
