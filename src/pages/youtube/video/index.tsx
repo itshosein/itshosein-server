@@ -51,7 +51,7 @@ function YoutubeVideos() {
           controls
           muted
           autoPlay
-          url={`https://www.itshosein.com/yt/${fileName}`}
+          url={`/api/serve-youtube?name=${encodeURIComponent(fileName)}`}
         />
       )}
     </Container>

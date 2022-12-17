@@ -1,10 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
-import { red } from "@mui/material/colors";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 
-  const filePath = `./public/yt/${req.query.name}.mp4`;
+  const filePath = `./public/yt/${decodeURIComponent(typeof req.query.name == "string" ? req.query.name : "")}.mp4`;
   const options: {
     start?: number;
     end?: number;
