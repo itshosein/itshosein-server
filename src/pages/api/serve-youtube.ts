@@ -51,9 +51,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     let contentLength = stat.size;
-    if (!options.end && options.start) {
-      options.end = end = options.start + 50_000_000
-    }
     console.log("start", start, "end", end);
 
     if (req.method === "HEAD") {
