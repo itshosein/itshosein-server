@@ -67,6 +67,9 @@ function WorkExperience() {
             padding: 0,
           },
         }}
+        nonce={undefined}
+        onResize={undefined}
+        onResizeCapture={undefined}
       >
         {workExperienceObj.map((experience, indexExperience) => {
           return (

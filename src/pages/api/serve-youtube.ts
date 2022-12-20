@@ -3,7 +3,7 @@ import fs from "fs";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 
-  const filePath = `./public/yt/${decodeURIComponent(typeof req.query.name == "string" ? req.query.name : "")}.mp4`;
+  const filePath = `./public/yt/${decodeURIComponent(typeof req.query.name == "string" ? req.query.name : "")}`;
   const options: {
     start?: number;
     end?: number;
@@ -13,7 +13,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   let end: number;
 
   const range = req.headers.range;
-  console.log("range", range);
 
   if (range) {
     const bytesPrefix = "bytes=";
@@ -53,21 +52,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.setHeader("accept-ranges", "bytes");
       res.setHeader("content-length", contentLength);
       res.end();
-    }
-
-    else {
+    } else {
       // Listing 5.
       let retrievedLength;
       if (start !== undefined && end !== undefined) {
         retrievedLength = (end + 1) - start;
-      }
-      else if (start !== undefined) {
+      } else if (start !== undefined) {
         retrievedLength = contentLength - start;
-      }
-      else if (end !== undefined) {
+      } else if (end !== undefined) {
         retrievedLength = (end + 1);
-      }
-      else {
+      } else {
         retrievedLength = contentLength;
       }
 
@@ -89,8 +83,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.status(500);
       });
 
-
       fileStream.pipe(res);
     }
   });
 };
+
+export const config = {
+  api: {
+    responseLimit: false,
+  },
+}
