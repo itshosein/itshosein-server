@@ -4,6 +4,8 @@ import * as yt from "youtube-search-without-api-key";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   let videos: IYoutubeListItem[] = await yt.search(`${req.query.q}`);
+  console.log("videos", videos);
+
   if (videos?.length) {
     res.status(200).json(videos);
   } else {
