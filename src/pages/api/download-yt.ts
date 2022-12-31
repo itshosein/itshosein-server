@@ -22,6 +22,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           let selectedFormat: ytdl.videoFormat = videoFormats.filter((format) =>
             format.qualityLabel.includes("720")
           )[0];
+          console.log(name);
+          console.log("path=>", `./public/yt/${name}.mp4`);
+
 
           ytdl(url, {
             format: selectedFormat,
