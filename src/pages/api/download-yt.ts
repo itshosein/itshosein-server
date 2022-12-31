@@ -52,7 +52,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 description: "file NOT created on Error",
                 name: name,
                 formatFound: selectedFormat.qualityLabel,
-                selectedFormat: JSON.stringify(selectedFormat),
+                selectedFormat: selectedFormat,
                 err,
               });
             });
