@@ -53,6 +53,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 name: name,
                 formatFound: selectedFormat.qualityLabel,
                 selectedFormat: selectedFormat,
+                videoFormats: videoFormats,
                 err,
               });
             });
