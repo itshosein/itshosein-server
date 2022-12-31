@@ -24,6 +24,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           )[0];
           console.log(name);
           console.log("path=>", `./public/yt/${name}.mp4`);
+          console.log("selectedFormat", selectedFormat.videoCodec, selectedFormat.qualityLabel, selectedFormat.codecs, selectedFormat.videoCodec);
+
 
 
           ytdl(url, {
