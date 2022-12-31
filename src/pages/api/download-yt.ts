@@ -15,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     ytdl
       .getBasicInfo(url)
       .then((value) => {
-        const name = `${value.videoDetails.title.replaceAll("|", "")}`;
+        const name = `${value.videoDetails.title.replaceAll("/", "=>")}`;
         ytdl.getInfo(req.query.v as string).then((info) => {
           let videoFormats = ytdl.filterFormats(info.formats, "videoandaudio");
 
