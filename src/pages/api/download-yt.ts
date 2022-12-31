@@ -49,7 +49,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             })
             .on("error", (err) => {
               res.status(500).json({
-                description: "file NOT created",
+                description: "file NOT created on Error",
                 name: name,
                 formatFound: selectedFormat.qualityLabel,
                 err,
