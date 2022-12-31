@@ -15,16 +15,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     ytdl
       .getBasicInfo(url)
       .then((value) => {
-        const name = `${value.videoDetails.title.replaceAll("/", "=>")}`;
+        const name = `${value.videoDetails.title.replaceAll("/", "of")}`;
         ytdl.getInfo(req.query.v as string).then((info) => {
           let videoFormats = ytdl.filterFormats(info.formats, "videoandaudio");
 
           let selectedFormat: ytdl.videoFormat = videoFormats.filter((format) =>
             format.qualityLabel.includes("720")
           )[0];
-          console.log(name);
-          console.log("path=>", `./public/yt/${name}.mp4`);
-
 
           ytdl(url, {
             format: selectedFormat,
@@ -42,7 +39,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 res.status(500).json({
                   description: "file NOT created",
                   name: name,
-                  formatFound: selectedFormat.qualityLabel,
+                  selectedFormat: selectedFormat,
                   error,
                 });
               }
@@ -51,9 +48,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
               res.status(500).json({
                 description: "file NOT created on Error",
                 name: name,
-                formatFound: selectedFormat.qualityLabel,
                 selectedFormat: selectedFormat,
-                videoFormats: videoFormats,
                 err,
               });
             });
